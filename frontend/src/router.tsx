@@ -1,16 +1,18 @@
-import { createBrowserRouter } from 'react-router-dom';
-import MainLayout from './layouts/MainLayout/MainLayout';
-import HomePage from './pages/HomePage/HomePage';
-import JobPostPage from './pages/JobPostPage/JobPostPage';
-import MyApplicationsPage from './pages/MyApplicationsPage/MyApplicationsPage';
-import MyJobsPage from './pages/MyJobsPage/MyJobsPage';
-import JobApplicationsPage from './pages/JobApplicationsPage/JobApplicationsPage';
-import ProfilePage from './pages/ProfilePage/ProfilePage';
-import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import { createBrowserRouter } from 'react-router-dom'
+import MainLayout from './layouts/MainLayout/MainLayout'
+import HomePage from './pages/HomePage/HomePage'
+import JobPostPage from './pages/JobPostPage/JobPostPage'
+import MyApplicationsPage from './pages/MyApplicationsPage/MyApplicationsPage'
+import MyJobsPage from './pages/MyJobsPage/MyJobsPage'
+import JobApplicationsPage from './pages/JobApplicationsPage/JobApplicationsPage'
+import ProfilePage from './pages/ProfilePage/ProfilePage'
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
+import { NavLinks } from './enums/NavLinks'
+import { Role } from './enums/Role'
 
 export const router = createBrowserRouter([
     {
-        path: '/',
+        path: NavLinks.Home,
         element: <MainLayout />,
         children: [
             {
@@ -18,37 +20,41 @@ export const router = createBrowserRouter([
                 element: <HomePage />
             },
             {
-                path: 'jobs/:id',
+                path: NavLinks.BrowseJobs,
                 element: <JobPostPage />
             },
             {
-                path: 'my-applications',
+                path: `${NavLinks.BrowseJobs}/:id`,
+                element: <JobPostPage />
+            },
+            {
+                path: NavLinks.MyApplications,
                 element: (
-                    <ProtectedRoute allowedRoles={['Candidate']}>
+                    <ProtectedRoute allowedRoles={[Role.Candidate]}>
                         <MyApplicationsPage />
                     </ProtectedRoute>
                 )
             },
             {
-                path: 'my-jobs',
+                path: NavLinks.MyJobs,
                 element: (
-                    <ProtectedRoute allowedRoles={['Employer']}>
+                    <ProtectedRoute allowedRoles={[Role.Employer]}>
                         <MyJobsPage />
                     </ProtectedRoute>
                 )
             },
             {
-                path: 'my-jobs/:id/applications',
+                path: `${NavLinks.MyJobs}/:id/applications`,
                 element: (
-                    <ProtectedRoute allowedRoles={['Employer']}>
+                    <ProtectedRoute allowedRoles={[Role.Employer]}>
                         <JobApplicationsPage />
                     </ProtectedRoute>
                 )
             },
             {
-                path: 'profile',
+                path: NavLinks.Profile,
                 element: (
-                    <ProtectedRoute allowedRoles={['Candidate', 'Employer']}>
+                    <ProtectedRoute allowedRoles={[Role.Candidate, Role.Employer]}>
                         <ProfilePage />
                     </ProtectedRoute>
                 )
