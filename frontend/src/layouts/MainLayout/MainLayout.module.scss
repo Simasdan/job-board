@@ -1,25 +1,25 @@
-@use '../../styles/tools' as tools;
+@use '../../styles/tools' as *;
 
 .layout {
     display: grid;
-    grid-template-columns: 240px 1fr;
+    grid-template-columns: 28rem 1fr;
     min-height: 100vh;
-}
 
-.content {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
+    .content {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
 
-.main {
-    flex: 1;
-    padding: tools.$spacing-xl;
-}
+        .main {
+            flex: 1;
+            padding: $space-XL;
+        }
 
-.footer {
-    padding: tools.$spacing-xl;
-    border-top: 0.5px solid tools.$color-border;
-    color: tools.$color-text-secondary;
-    font-size: 1.4rem;
+        .footer {
+            padding: $space-XL;
+            border-top: 0.05rem solid $color-border;
+            color: $color-text-secondary;
+            @include body-M;
+        }
+    }
 }

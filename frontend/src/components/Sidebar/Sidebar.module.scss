@@ -1,0 +1,181 @@
+@use '../../styles/tools' as *;
+
+.sidebar {
+    background: $color-sidebar-bg;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: $space-S $space-XXS;
+    position: sticky;
+    top: 0;
+
+    .logo {
+        @include flexbox-centered;
+        justify-content: flex-start;
+        gap: $space-XXXXS;
+        padding: 0 $space-XXXXS;
+        margin-bottom: $space-L;
+
+        .logoIcon {
+            width: 3.2rem;
+            height: 3.2rem;
+            background: $color-accent;
+            border-radius: $border-radius-small;
+            flex-shrink: 0;
+            @include flexbox-centered;
+
+            svg {
+                width: 1.6rem;
+                height: 1.6rem;
+                stroke: white;
+            }
+        }
+
+        span {
+            @include title-M;
+            color: white;
+            letter-spacing: -0.03rem;
+        }
+    }
+
+    .nav {
+        @include flex-column;
+        gap: 0.4rem;
+        flex: 1;
+
+        .navLink {
+            display: flex;
+            align-items: center;
+            gap: $space-XXXXS;
+            padding: $space-XXXXS $space-XXXS;
+            border-radius: $border-radius-small;
+            text-decoration: none;
+            color: $color-sidebar-muted;
+            transition: background $transition ease, color $transition ease;
+
+            @include body-M;
+
+            svg {
+                width: 1.6rem;
+                height: 1.6rem;
+                flex-shrink: 0;
+                transition: stroke $transition ease;
+            }
+
+            &:hover {
+                background: $color-sidebar-hover;
+                color: white;
+            }
+
+            &.active {
+                background: $color-sidebar-hover;
+                color: white;
+
+                svg {
+                    stroke: $color-accent !important;
+                }
+            }
+        }
+    }
+
+    .bottom {
+        border-top: 0.05rem solid $color-sidebar-border;
+        padding-top: $space-XXS;
+        @include flex-column;
+        gap: $space-XXXXS;
+
+        .userCard {
+            display: flex;
+            align-items: center;
+            gap: $space-XXXXS;
+            padding: $space-XXXXS;
+            border-radius: $border-radius-small;
+            background: $color-sidebar-hover;
+
+            .userAvatar {
+                width: 3.2rem;
+                height: 3.2rem;
+                border-radius: 50%;
+                background: $color-accent;
+                color: white;
+                flex-shrink: 0;
+                @include flexbox-centered;
+                @include label-S;
+            }
+
+            .userInfo {
+                @include flex-column;
+                overflow: hidden;
+
+                .userEmail {
+                    color: white;
+                    @include title-S;
+                    @include truncate;
+                }
+
+                .userRole {
+                    color: $color-sidebar-icon;
+                    @include body-S;
+                }
+            }
+        }
+
+        .logoutButton {
+            width: 100%;
+            padding: $space-XXXXS;
+            border-radius: $border-radius-small;
+            background: transparent;
+            border: 0.05rem solid #334155;
+            color: $color-sidebar-muted;
+            cursor: pointer;
+            transition: background $transition ease, color $transition ease;
+            @include body-M;
+
+            &:hover {
+                background: $color-sidebar-hover;
+                color: white;
+            }
+        }
+
+        .signInButton {
+            width: 100%;
+            padding: $space-XXXXS;
+            border-radius: $border-radius-small;
+            background: $color-accent;
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: background $transition ease;
+            gap: $space-XXXXS;
+
+            @include flexbox-centered;
+            @include title-S;
+
+            svg {
+                width: 1.4rem;
+                height: 1.4rem;
+            }
+
+            &:hover {
+                background: $color-accent-hover;
+            }
+        }
+
+        .registerButton {
+            width: 100%;
+            padding: $space-XXXXS;
+            border-radius: $border-radius-small;
+            background: transparent;
+            border: 0.05rem solid #334155;
+            color: $color-sidebar-muted;
+            cursor: pointer;
+            transition: background $transition ease, color $transition ease;
+            @include body-M;
+
+            &:hover {
+                background: $color-sidebar-hover;
+                color: white;
+            }
+        }
+    }
+}

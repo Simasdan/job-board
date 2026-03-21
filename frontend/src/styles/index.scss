@@ -1,8 +1,8 @@
-@use '../styles/tools';
+@use '../styles/tools' as *;
 
 /* stylelint-disable scale-unlimited/declaration-strict-value */
 html {
-    font-size: 10px;
+  font-size: 10px;
 }
 
 /* stylelint-enable scale-unlimited/declaration-strict-value */
@@ -13,6 +13,10 @@ html {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body {
+  background-color: $color-bg;
 }
 
 button {

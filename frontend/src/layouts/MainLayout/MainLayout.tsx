@@ -1,11 +1,12 @@
 import { Outlet } from "react-router-dom";
 import styles from './MainLayout.module.scss';
+import Sidebar from "@/components/Sidebar/Sidebar";
 
 const MainLayout = () => {
   return (
     <div className={styles.layout}>
       <aside className={styles.sidebar}>
-        Sidebar goes here
+        <Sidebar/>
       </aside>
       <div className={styles.content}>
         <main className={styles.main}>
