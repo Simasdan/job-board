@@ -1,6 +1,6 @@
 @use '../../styles/tools' as *;
 
-.layout {
+.mainLayout {
     display: grid;
     grid-template-columns: 28rem 1fr;
     min-height: 100vh;

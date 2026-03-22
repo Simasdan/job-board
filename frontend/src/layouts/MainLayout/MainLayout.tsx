@@ -4,7 +4,7 @@ import Sidebar from "@/components/Sidebar/Sidebar";
 
 const MainLayout = () => {
   return (
-    <div className={styles.layout}>
+    <div className={styles.mainLayout}>
       <aside className={styles.sidebar}>
         <Sidebar/>
       </aside>

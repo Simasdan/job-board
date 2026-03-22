@@ -1,0 +1,179 @@
+@use '../../styles/tools' as *;
+
+.dialogContent {
+    padding: 0 !important;
+    overflow: hidden;
+    border-radius: $border-radius-regular !important;
+    border: none !important;
+    max-width: 42rem !important;
+
+    .dialogHeader {
+        background: $color-sidebar-bg;
+        padding: $space-S $space-M;
+        gap: 0;
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: $space-XXXXS;
+            margin-bottom: $space-XXS;
+
+            .logoIcon {
+                width: 2.8rem;
+                height: 2.8rem;
+                background: $color-accent;
+                border-radius: $border-radius-small;
+                @include flexbox-centered;
+                flex-shrink: 0;
+
+                svg {
+                    width: 1.4rem;
+                    height: 1.4rem;
+                    stroke: white;
+                }
+            }
+
+            span {
+                @include title-M;
+                color: white;
+                letter-spacing: $letter-spacing-tight;
+            }
+        }
+
+        .tabs {
+            display: flex;
+            gap: $space-XXXXXS;
+
+            .tab {
+                padding: $space-XXXXS $space-XXS;
+                border-radius: $border-radius-small;
+                background: transparent;
+                border: none;
+                color: $color-sidebar-icon;
+                cursor: pointer;
+                transition: background $transition ease, color $transition ease;
+                @include body-M;
+
+                &:hover {
+                    background: $color-sidebar-hover;
+                    color: white;
+                }
+
+                &.activeTab {
+                    background: $color-sidebar-hover;
+                    color: white;
+                }
+            }
+
+        }
+    }
+
+    .formBody {
+        padding: $space-S $space-M;
+
+        .form {
+            @include flex-column;
+            gap: $space-XXS;
+
+            .field {
+                @include flex-column;
+                gap: $space-XXXXS;
+
+                label {
+                    @include label-XS;
+                    color: $color-text-primary;
+                }
+
+                input {
+                    padding: $space-XXXXS $space-XXXS;
+                    border-radius: $border-radius-small;
+                    border: $border-width solid $color-grey-200;
+                    @include body-S;
+                    width: 100%;
+                    outline: none;
+                    transition: border $transition ease;
+                    font-family: inherit;
+
+                    &:focus {
+                        border-color: $color-accent;
+                    }
+
+                    &::placeholder {
+                        color: $color-grey-400;
+                    }
+                }
+
+                .roleSelector {
+                    display: flex;
+                    gap: $space-XXXXS;
+
+                    .roleButton {
+                        flex: 1;
+                        padding: $space-XXXXS;
+                        border-radius: $border-radius-small;
+                        background: transparent;
+                        border: $border-width solid $color-grey-200;
+                        color: $color-text-secondary;
+                        cursor: pointer;
+                        transition: all $transition ease;
+                        @include title-S;
+
+                        &:hover {
+                            border-color: $color-accent;
+                            color: $color-accent;
+                        }
+                    }
+
+                    .activeRole {
+                        background: $color-accent;
+                        border-color: $color-accent;
+                        color: white;
+
+                        &:hover {
+                            color: white;
+                        }
+                    }
+                }
+            }
+
+            .submitButton {
+                width: 100%;
+                padding: $space-XXXXS;
+                border-radius: $border-radius-small;
+                background: $color-accent;
+                border: none;
+                color: white;
+                cursor: pointer;
+                transition: background $transition ease;
+                margin-top: $space-XXXXXS;
+                @include title-S;
+
+                &:hover {
+                    background: $color-accent-hover;
+                }
+
+                &:disabled {
+                    opacity: 0.6;
+                    cursor: not-allowed;
+                }
+            }
+
+            .switchText {
+                text-align: center;
+                @include body-S;
+                color: $color-text-secondary;
+
+                span {
+                    color: $color-accent;
+                    cursor: pointer;
+                    font-weight: 500;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+
+}
