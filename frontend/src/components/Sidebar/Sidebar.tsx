@@ -12,6 +12,7 @@ import UserIcon from '@/assets/icons/user.svg?react';
 import LogOutIcon from '@/assets/icons/log-out.svg?react';
 import { useState } from 'react';
 import AuthModal from '@/components/AuthModal/AuthModal';
+import LogoutDialog from '../LogoutDialog/LogoutDialog';
 
 const Sidebar = () => {
     const { user, isAuthenticated, logout } = useAuth()
@@ -96,10 +97,15 @@ const Sidebar = () => {
                                     <span className={styles.userRole}>{user?.role}</span>
                                 </div>
                             </div>
-                            <button className={styles.logoutButton} onClick={logout}>
-                                <LogOutIcon />
-                                Logout
-                            </button>
+                            <LogoutDialog
+                                onConfirm={logout}
+                                trigger={
+                                    <button className={styles.logoutButton}>
+                                        <LogOutIcon />
+                                        Logout
+                                    </button>
+                                }
+                            />
                         </>
                     ) : (
                         <>
