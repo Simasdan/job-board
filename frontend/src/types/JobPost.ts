@@ -31,3 +31,15 @@ export interface JobPostQuery {
     page?: number
     pageSize?: number
 }
+
+export interface JobApplication {
+    id: number
+    coverLetter: string
+    resumeUrl: string
+    status: string
+    createdAt: string
+    jobPostId: number
+    jobTitle: string
+    candidateName: string
+    candidateId: number
+}

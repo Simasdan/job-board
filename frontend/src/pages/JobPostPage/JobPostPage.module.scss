@@ -1,0 +1,311 @@
+@use '../../styles/tools' as *;
+
+.jobPostPage {
+    @include flex-column;
+    min-height: 100vh;
+
+    .loadingState {
+        @include flexbox-centered;
+        @include flex-column;
+        gap: $space-XXXXS;
+        padding: $space-XXXL;
+
+        .spinner {
+            width: 2.4rem;
+            height: 2.4rem;
+            color: $color-accent;
+        }
+
+        span {
+            @include body-M;
+            color: $color-text-secondary;
+        }
+    }
+
+    .hero {
+        background: $color-sidebar-bg;
+        padding: $space-XL $space-XL $space-L;
+        border-radius: $border-radius-regular $border-radius-regular 0 0;
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: $space-XXXXXS;
+            margin-bottom: $space-M;
+
+            span {
+                @include body-S;
+                color: $color-sidebar-icon;
+
+                &:first-child {
+                    cursor: pointer;
+
+                    &:hover {
+                        color: white;
+                    }
+                }
+
+                &:last-child {
+                    color: $color-sidebar-muted;
+                }
+            }
+        }
+
+        .heroContent {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: $space-XL;
+
+            .heroLeft {
+                @include flex-column;
+                gap: $space-XXXXS;
+
+                .titleRow {
+                    display: flex;
+                    align-items: center;
+                    gap: $space-XXXXS;
+
+                    h1 {
+                        @include headline-S;
+                        color: white;
+                        letter-spacing: -0.03rem;
+                    }
+
+                    .statusBadge {
+                        @include label-XXS;
+                        background: $color-info-bg;
+                        color: $color-info;
+                        padding: 0.3rem $space-XXXXS;
+                        border-radius: $border-radius-XXlarge;
+                        flex-shrink: 0;
+                    }
+                }
+
+                .metaRow {
+                    display: flex;
+                    align-items: center;
+                    gap: $space-M;
+
+                    .metaItem {
+                        display: flex;
+                        align-items: center;
+                        gap: $space-XXXXXS;
+                        @include body-S;
+                        color: $color-sidebar-icon;
+
+                        svg {
+                            width: 1.4rem;
+                            height: 1.4rem;
+                            flex-shrink: 0;
+                        }
+                    }
+                }
+            }
+
+            .salary {
+                @include flex-column;
+                align-items: flex-end;
+                flex-shrink: 0;
+
+                .salaryAmount {
+                    @include headline-S;
+                    color: white;
+                }
+
+                .salaryPeriod {
+                    @include body-S;
+                    color: $color-sidebar-icon;
+                }
+            }
+        }
+    }
+
+    .content {
+        display: grid;
+        grid-template-columns: 1fr 32rem;
+        gap: $space-M;
+        padding: $space-M $space-XL;
+        align-items: start;
+
+        .descriptionCard {
+            background: white;
+            border: 0.05rem solid $color-grey-200;
+            border-radius: $border-radius-regular;
+            padding: $space-M;
+            box-shadow: $box-shadow-jobPostCard;
+            align-self: start;
+
+            h2 {
+                @include title-L;
+                color: $color-text-primary;
+                margin-bottom: $space-XXS;
+            }
+
+            p {
+                @include body-M;
+                color: $color-text-secondary;
+                line-height: 1.8;
+            }
+        }
+
+        .sidebar {
+            @include flex-column;
+            gap: $space-XXS;
+
+            .applyCard {
+                background: white;
+                border: 0.05rem solid $color-grey-200;
+                border-radius: $border-radius-regular;
+                padding: $space-M;
+                box-shadow: $box-shadow-jobPostCard;
+                @include flex-column;
+                gap: $space-XXS;
+
+                h3 {
+                    @include title-M;
+                    color: $color-text-primary;
+                }
+
+                .applyHint {
+                    @include body-S;
+                    color: $color-text-secondary;
+                }
+
+                .applyButton {
+                    width: 100%;
+                    padding: $space-XXXXS;
+                    border-radius: $border-radius-small;
+                    background: $color-accent;
+                    border: none;
+                    color: white;
+                    cursor: pointer;
+                    transition: background $transition ease;
+                    @include flexbox-centered;
+                    gap: $space-XXXXXS;
+                    @include title-S;
+
+                    &:hover {
+                        background: $color-accent-hover;
+                    }
+
+                    &:disabled {
+                        opacity: 0.6;
+                        cursor: not-allowed;
+                    }
+                }
+
+                .appliedButton {
+                    width: 100%;
+                    padding: $space-XXXXS;
+                    border-radius: $border-radius-small;
+                    background: $color-success;
+                    border: none;
+                    color: white;
+                    @include title-S;
+                    opacity: 0.7;
+                    cursor: not-allowed;
+                }
+
+                .applyForm {
+                    @include flex-column;
+                    gap: $space-XXS;
+
+                    .field {
+                        @include flex-column;
+                        gap: $space-XXXXXS;
+
+                        label {
+                            @include label-XS;
+                            color: $color-text-primary;
+                        }
+
+                        input, textarea {
+                            padding: $space-XXXXS $space-XXXS;
+                            border-radius: $border-radius-small;
+                            border: 0.05rem solid $color-grey-200;
+                            font-family: inherit;
+                            outline: none;
+                            transition: border $transition ease;
+                            @include body-M;
+                            resize: vertical;
+
+                            &:focus {
+                                border-color: $color-accent;
+                            }
+
+                            &::placeholder {
+                                color: $color-grey-400;
+                            }
+                        }
+                    }
+
+                    .formButtons {
+                        @include flex-column;
+                        gap: $space-XXXXXS;
+                    }
+
+                    .cancelButton {
+                        width: 100%;
+                        padding: $space-XXXXS;
+                        border-radius: $border-radius-small;
+                        background: transparent;
+                        border: 0.05rem solid $color-grey-200;
+                        color: $color-text-secondary;
+                        cursor: pointer;
+                        transition: all $transition ease;
+                        @include body-M;
+
+                        &:hover {
+                            border-color: $color-text-secondary;
+                            color: $color-text-primary;
+                        }
+                    }
+
+                    .buttonSpinner {
+                        width: 1.4rem;
+                        height: 1.4rem;
+                        color: white;
+                    }
+                }
+            }
+
+            .companyCard {
+                background: white;
+                border: 0.05rem solid $color-grey-200;
+                border-radius: $border-radius-regular;
+                padding: $space-M;
+                box-shadow: $box-shadow-jobPostCard;
+                @include flex-column;
+                gap: $space-XXS;
+
+                h3 {
+                    @include title-M;
+                    color: $color-text-primary;
+                }
+
+                .companyHeader {
+                    display: flex;
+                    align-items: center;
+                    gap: $space-XXXXS;
+
+                    .companyAvatar {
+                        width: 3.6rem;
+                        height: 3.6rem;
+                        border-radius: $border-radius-small;
+                        background: $color-info-bg;
+                        color: $color-info;
+                        @include flexbox-centered;
+                        @include label-M;
+                        flex-shrink: 0;
+                    }
+
+                    .companyName {
+                        @include title-S;
+                        color: $color-text-primary;
+                    }
+                }
+            }
+        }
+    }
+}
