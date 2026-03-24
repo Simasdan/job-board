@@ -1,0 +1,62 @@
+@use '../../styles/tools' as *;
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $space-XXXXXS;
+
+    .pageButton {
+        min-width: 3.2rem;
+        height: 3.2rem;
+        border-radius: $border-radius-small;
+        background: white;
+        border: 0.05rem solid $color-grey-200;
+        color: $color-text-secondary;
+        cursor: pointer;
+        transition: all $transition ease;
+        @include title-S;
+
+        &:hover {
+            border-color: $color-accent;
+            color: $color-accent;
+        }
+
+        &.activePage {
+            background: $color-accent;
+            border-color: $color-accent;
+            color: white;
+
+            &:hover {
+                color: white;
+            }
+        }
+    }
+
+    .arrowButton {
+        width: 3.2rem;
+        height: 3.2rem;
+        border-radius: $border-radius-small;
+        background: white;
+        border: 0.05rem solid $color-grey-200;
+        color: $color-text-secondary;
+        cursor: pointer;
+        transition: all $transition ease;
+        @include flexbox-centered;
+
+        svg {
+            width: 1.4rem;
+            height: 1.4rem;
+        }
+
+        &:hover:not(:disabled) {
+            border-color: $color-accent;
+            color: $color-accent;
+        }
+
+        &:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+    }
+}

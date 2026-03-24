@@ -130,6 +130,10 @@
             cursor: pointer;
             transition: background $transition ease, color $transition ease;
             @include body-M;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: $space-XS;
 
             &:hover {
                 background: $color-sidebar-hover;

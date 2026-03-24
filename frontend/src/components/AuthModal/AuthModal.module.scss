@@ -147,6 +147,14 @@
                 transition: background $transition ease;
                 margin-top: $space-XXXXXS;
                 @include title-S;
+                @include flexbox-centered;
+                gap: $space-XXXXXS;
+
+                .buttonSpinner {
+                    width: 1.4rem;
+                    height: 1.4rem;
+                    color: white;
+                }
 
                 &:hover {
                     background: $color-accent-hover;

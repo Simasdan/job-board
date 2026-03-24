@@ -1,0 +1,61 @@
+@use '../../styles/tools' as *;
+
+.homePage {
+    @include flex-column;
+    min-height: 100vh;
+
+    .hero {
+        background: $color-sidebar-bg;
+        padding: $space-XL $space-XL $space-L;
+        border-radius: $border-radius-regular $border-radius-regular 0 0;
+
+        h1 {
+            @include headline-M;
+            color: white;
+            margin-bottom: $space-XXXXXS;
+            letter-spacing: -0.04rem;
+        }
+
+        p {
+            @include body-M;
+            color: $color-sidebar-icon;
+        }
+    }
+
+    .content {
+        padding: $space-M $space-XL;
+        @include flex-column;
+        gap: $space-M;
+        flex: 1;
+
+        .loading {
+            @include flexbox-centered;
+            @include flex-column;
+            gap: $space-XXXXS;
+            padding: $space-XXXL;
+
+            .spinner {
+                width: 2.4rem;
+                height: 2.4rem;
+                color: $color-accent;
+            }
+
+            span {
+                @include body-M;
+                color: $color-text-secondary;
+            }
+        }
+
+        .empty {
+            @include flexbox-centered;
+            padding: $space-XXXL;
+            @include body-M;
+            color: $color-text-secondary;
+        }
+
+        .jobList {
+            @include flex-column;
+            gap: $space-XXS;
+        }
+    }
+}

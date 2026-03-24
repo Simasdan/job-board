@@ -1,12 +1,37 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\sdani\\Desktop\\Programavimas\\Job Board\\backend\\job-board-api\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D80BA2C8-ADF3-DD5C-4350-301A99CEBE0D}|job-board-api\\job-board-api.csproj|c:\\users\\sdani\\desktop\\programavimas\\job board\\backend\\job-board-api\\job-board-api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D80BA2C8-ADF3-DD5C-4350-301A99CEBE0D}|job-board-api\\job-board-api.csproj|solutionrelative:job-board-api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\sdani\\Desktop\\Programavimas\\Job Board\\backend\\job-board-api\\job-board-api\\Program.cs",
+              "RelativeDocumentMoniker": "job-board-api\\Program.cs",
+              "ToolTip": "C:\\Users\\sdani\\Desktop\\Programavimas\\Job Board\\backend\\job-board-api\\job-board-api\\Program.cs",
+              "RelativeToolTip": "job-board-api\\Program.cs",
+              "ViewState": "AgIAADMAAAAAAAAAAAAAAEYAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-22T11:32:42.659Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

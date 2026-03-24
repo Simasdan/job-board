@@ -1,0 +1,140 @@
+@use '../../styles/tools' as *;
+
+.filterPanel {
+    background: white;
+    border-bottom: 0.05rem solid $color-grey-200;
+    border-radius: 0 0 $border-radius-regular $border-radius-regular;
+    padding: $space-M $space-XL;
+    box-shadow: $box-shadow-filters;
+
+    .searchRow {
+        display: flex;
+        align-items: flex-end;
+        gap: $space-XXS;
+        margin-bottom: $space-XXS;
+
+        .inputWrapper {
+            @include flex-column;
+            gap: $space-XXXXXS;
+            flex: 1;
+
+            label {
+                @include label-XS;
+                color: $color-text-primary;
+            }
+
+            input {
+                padding: $space-XXXXS $space-XXXS;
+                border-radius: $border-radius-small;
+                border: 0.05rem solid $color-grey-200;
+                font-family: inherit;
+                outline: none;
+                transition: border $transition ease;
+                @include body-M;
+
+                &:focus {
+                    border-color: $color-accent;
+                }
+
+                &::placeholder {
+                    color: $color-grey-400;
+                }
+            }
+        }
+
+        .inputWithIcon {
+            position: relative;
+
+            svg {
+                position: absolute;
+                left: $space-XXXS;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 1.4rem;
+                height: 1.4rem;
+                color: $color-grey-400;
+            }
+
+            input {
+                padding-left: $space-M;
+            }
+        }
+
+        .buttonGroup {
+            @include flex-column;
+            gap: $space-XXXXXS;
+            flex-shrink: 0;
+
+            .searchButton {
+                padding: $space-XXXXS $space-S;
+                border-radius: $border-radius-small;
+                background: $color-sidebar-bg;
+                border: none;
+                color: white;
+                cursor: pointer;
+                transition: background $transition ease;
+                @include title-S;
+
+                &:hover {
+                    background: $color-primary-600;
+                }
+            }
+
+            .resetButton {
+                padding: $space-XXXXS $space-S;
+                border-radius: $border-radius-small;
+                background: transparent;
+                border: 0.05rem solid $color-grey-200;
+                color: $color-text-secondary;
+                cursor: pointer;
+                transition: all $transition ease;
+                @include body-M;
+
+                &:hover {
+                    border-color: $color-text-secondary;
+                    color: $color-text-primary;
+                }
+            }
+        }
+    }
+
+    .divider {
+        height: 0.05rem;
+        background: $color-grey-200;
+        margin-bottom: $space-XXS;
+    }
+
+    .sortRow {
+        display: flex;
+        align-items: center;
+        gap: $space-XXXXS;
+
+        .sortLabel {
+            @include label-S;
+            color: $color-text-secondary;
+            margin-right: $space-XXXXXS;
+        }
+
+        .sortPill {
+            padding: $space-XXXXXS $space-XXXS;
+            border-radius: $border-radius-XXlarge;
+            background: transparent;
+            border: 0.05rem solid $color-grey-200;
+            color: $color-text-secondary;
+            cursor: pointer;
+            transition: all $transition ease;
+            @include label-XS;
+
+            &:hover {
+                border-color: $color-sidebar-bg;
+                color: $color-sidebar-bg;
+            }
+
+            &.activePill {
+                border: 0.15rem solid $color-sidebar-bg;
+                color: $color-sidebar-bg;
+                font-weight: 600;
+            }
+        }
+    }
+}

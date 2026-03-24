@@ -144,3 +144,4 @@ C:\Users\sdani\Desktop\Programavimas\Job Board\backend\job-board-api\job-board-a
 C:\Users\sdani\Desktop\Programavimas\Job Board\backend\job-board-api\job-board-api\obj\Debug\net8.0\ref\job-board-api.dll
 C:\Users\sdani\Desktop\Programavimas\Job Board\backend\job-board-api\job-board-api\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\sdani\Desktop\Programavimas\Job Board\backend\job-board-api\job-board-api\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\sdani\Desktop\Programavimas\Job Board\backend\job-board-api\job-board-api\obj\Debug\net8.0\job-board-api.sourcelink.json

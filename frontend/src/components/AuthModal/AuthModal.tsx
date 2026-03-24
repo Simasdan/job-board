@@ -7,6 +7,7 @@ import {
 import { useAuth } from '@/context/AuthContext'
 import { Role } from '@/enums/Role'
 import { toast } from 'sonner'
+import { Spinner } from '../ui/spinner'
 import axiosInstance from '@/api/axiosInstance'
 import styles from './AuthModal.module.scss'
 import BriefcaseIcon from '@/assets/icons/briefcase-business.svg?react'
@@ -142,7 +143,12 @@ const AuthModal = ({ isOpen, onClose, defaultTab = 'login' }: AuthModalProps) =>
                                 onClick={handleLogin}
                                 disabled={loading}
                             >
-                                {loading ? 'Signing in...' : 'Sign in'}
+                                {loading ? (
+                                    <>
+                                        <Spinner className={styles.buttonSpinner} />
+                                        Signing in...
+                                    </>
+                                ) : 'Sign in'}
                             </button>
                             <p className={styles.switchText}>
                                 Don't have an account?{' '}
@@ -245,7 +251,12 @@ const AuthModal = ({ isOpen, onClose, defaultTab = 'login' }: AuthModalProps) =>
                                 onClick={handleRegister}
                                 disabled={loading}
                             >
-                                {loading ? 'Creating account...' : 'Create account'}
+                                {loading ? (
+                                    <>
+                                        <Spinner className={styles.buttonSpinner} />
+                                        Creating account...
+                                    </>
+                                ) : 'Create account'}
                             </button>
                             <p className={styles.switchText}>
                                 Already have an account?{' '}
