@@ -19,6 +19,7 @@ namespace job_board_api.Services
         {
             var jobPosts = _context.JobPosts
                 .Include(jp => jp.Employer)
+                .Include(jp => jp.Applications)
                 .AsQueryable();
 
             // Filtering
@@ -68,7 +69,8 @@ namespace job_board_api.Services
                     Status = jp.Status.ToString(),
                     CreatedAt = jp.CreatedAt,
                     CompanyName = jp.Employer!.CompanyName,
-                    EmployerId = jp.EmployerId
+                    EmployerId = jp.EmployerId,
+                    ApplicationCount = jp.Applications != null ? jp.Applications.Count : 0
                 })
                 .ToList();
 
@@ -87,6 +89,7 @@ namespace job_board_api.Services
         {
             var jobPost = _context.JobPosts
                 .Include(jp => jp.Employer)
+                .Include(jp => jp.Applications)
                 .FirstOrDefault(jp => jp.Id == id);
 
             if (jobPost == null) return null;
@@ -102,7 +105,8 @@ namespace job_board_api.Services
                 Status = jobPost.Status.ToString(),
                 CreatedAt = jobPost.CreatedAt,
                 CompanyName = jobPost.Employer!.CompanyName,
-                EmployerId = jobPost.EmployerId
+                EmployerId = jobPost.EmployerId,
+                ApplicationCount = jobPost.Applications != null ? jobPost.Applications.Count : 0
             };
 
             return result;

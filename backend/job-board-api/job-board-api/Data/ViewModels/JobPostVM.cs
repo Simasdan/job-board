@@ -16,5 +16,6 @@ namespace job_board_api.Data.ViewModels
         public DateTime CreatedAt { get; set; }
         public string CompanyName { get; set; } = string.Empty;
         public int EmployerId { get; set; }
+        public int ApplicationCount { get; set; }
     }
 }
