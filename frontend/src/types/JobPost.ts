@@ -9,6 +9,7 @@ export interface JobPost {
     createdAt: string
     companyName: string
     employerId: number
+    applicationCount: number
 }
 
 export interface PagedResult<T> {

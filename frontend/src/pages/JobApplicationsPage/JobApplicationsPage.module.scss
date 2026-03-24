@@ -1,0 +1,286 @@
+@use '../../styles/tools' as *;
+
+.jobApplicationsPage {
+    @include flex-column;
+    min-height: 100vh;
+
+    .hero {
+        background: $color-sidebar-bg;
+        padding: $space-XL $space-XL $space-L;
+        border-radius: $border-radius-regular $border-radius-regular 0 0;
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: $space-XXXXXS;
+            margin-bottom: $space-M;
+
+            .backLink {
+                display: flex;
+                align-items: center;
+                gap: $space-XXXXXS;
+                cursor: pointer;
+                @include body-S;
+                color: $color-sidebar-icon;
+                transition: color $transition ease;
+
+                svg {
+                    width: 1.4rem;
+                    height: 1.4rem;
+                }
+
+                &:hover {
+                    color: white;
+                }
+            }
+
+            span {
+                @include body-S;
+                color: $color-sidebar-icon;
+
+                &:last-child {
+                    color: $color-sidebar-muted;
+                }
+            }
+        }
+
+        .heroContent {
+            @include flex-column;
+            gap: $space-XXXXXS;
+
+            h1 {
+                @include headline-M;
+                color: white;
+                letter-spacing: -0.04rem;
+            }
+
+            p {
+                @include body-M;
+                color: $color-sidebar-icon;
+            }
+        }
+    }
+
+    .content {
+        padding: $space-M $space-XL;
+        @include flex-column;
+        gap: $space-M;
+        flex: 1;
+
+        .loading {
+            @include flexbox-centered;
+            @include flex-column;
+            gap: $space-XXXXS;
+            padding: $space-XXXL;
+
+            .spinner {
+                width: 2.4rem;
+                height: 2.4rem;
+                color: $color-accent;
+            }
+
+            span {
+                @include body-M;
+                color: $color-text-secondary;
+            }
+        }
+
+        .empty {
+            @include flexbox-centered;
+            padding: $space-XXXL;
+
+            span {
+                @include body-M;
+                color: $color-text-secondary;
+            }
+        }
+
+        .applicationList {
+            @include flex-column;
+            gap: $space-M;
+        }
+    }
+
+    .applicationCard {
+        background: white;
+        border: 0.05rem solid $color-grey-200;
+        border-radius: $border-radius-regular;
+        padding: $space-M;
+        box-shadow: $box-shadow-jobPostCard;
+        @include flex-column;
+        gap: $space-XXS;
+
+        &.rejectedCard {
+            opacity: 0.75;
+        }
+
+        .cardHeader {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .candidateInfo {
+                display: flex;
+                align-items: center;
+                gap: $space-XXXXS;
+
+                .avatar {
+                    width: 4rem;
+                    height: 4rem;
+                    border-radius: 50%;
+                    background: $color-info-bg;
+                    color: $color-info;
+                    @include flexbox-centered;
+                    @include label-M;
+                    flex-shrink: 0;
+                }
+
+                .candidateName {
+                    @include title-M;
+                    color: $color-text-primary;
+                }
+
+                .appliedDate {
+                    @include body-S;
+                    color: $color-text-secondary;
+                    margin-top: 0.2rem;
+                }
+            }
+
+            .badge {
+                @include label-XXS;
+                padding: 0.3rem $space-XXXXS;
+                border-radius: $border-radius-XXlarge;
+            }
+
+            .badgePending {
+                background: $color-grey-100;
+                color: $color-grey-500;
+            }
+
+            .badgeReviewed {
+                background: $color-info-bg;
+                color: $color-info;
+            }
+
+            .badgeAccepted {
+                background: $color-success-bg;
+                color: $color-success;
+            }
+
+            .badgeRejected {
+                background: $color-error-bg;
+                color: $color-error;
+            }
+        }
+
+        .coverLetter {
+            border-top: 0.05rem solid $color-grey-200;
+            padding-top: $space-XXS;
+
+            .coverLetterLabel {
+                @include label-XXS;
+                color: $color-text-secondary;
+                text-transform: uppercase;
+                letter-spacing: 0.05rem;
+                margin-bottom: $space-XXXXXS;
+            }
+
+            .coverLetterText {
+                @include body-M;
+                color: $color-text-secondary;
+                line-height: 1.7;
+            }
+        }
+
+        .cardFooter {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .resumeLink {
+                display: flex;
+                align-items: center;
+                gap: $space-XXXXXS;
+                @include body-S;
+                color: $color-accent;
+                text-decoration: none;
+                transition: opacity $transition ease;
+
+                svg {
+                    width: 1.2rem;
+                    height: 1.2rem;
+                }
+
+                &:hover {
+                    opacity: 0.8;
+                }
+            }
+
+            .noResume {
+                @include body-S;
+                color: $color-text-secondary;
+            }
+
+            .statusButtons {
+                display: flex;
+                align-items: center;
+                gap: $space-XXXXXS;
+
+                .updateSpinner {
+                    width: 1.6rem;
+                    height: 1.6rem;
+                    color: $color-accent;
+                }
+
+                .statusButton {
+                    padding: $space-XXXXXS $space-XXXS;
+                    border-radius: $border-radius-small;
+                    background: transparent;
+                    border: 0.05rem solid $color-grey-200;
+                    color: $color-text-secondary;
+                    cursor: pointer;
+                    transition: all $transition ease;
+                    @include body-S;
+
+                    &:hover:not(:disabled) {
+                        border-color: $color-accent;
+                        color: $color-accent;
+                    }
+
+                    &:disabled {
+                        cursor: default;
+                    }
+                }
+
+                .activePending {
+                    background: $color-grey-100;
+                    border: 0.15rem solid $color-grey-500;
+                    color: $color-grey-500;
+                    font-weight: 600;
+                }
+
+                .activeReviewed {
+                    background: $color-info-bg;
+                    border: 0.15rem solid $color-info;
+                    color: $color-info;
+                    font-weight: 600;
+                }
+
+                .activeAccepted {
+                    background: $color-success-bg;
+                    border: 0.15rem solid $color-success;
+                    color: $color-success;
+                    font-weight: 600;
+                }
+
+                .activeRejected {
+                    background: $color-error-bg;
+                    border: 0.15rem solid $color-error;
+                    color: $color-error;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+}

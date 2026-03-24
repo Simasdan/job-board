@@ -1,0 +1,97 @@
+@use '../../styles/tools' as *;
+
+.content {
+    padding: 0 !important;
+    overflow: hidden;
+    border-radius: $border-radius-regular !important;
+    border: none !important;
+    max-width: 38rem !important;
+
+    .header {
+        background: $color-sidebar-bg;
+        padding: $space-M $space-M $space-S;
+        @include flex-column;
+        gap: $space-XXXXS;
+        align-items: center;
+        text-align: center;
+
+        .iconWrapper {
+            width: 4.8rem;
+            height: 4.8rem;
+            background: $color-error-bg;
+            border-radius: 50%;
+            @include flexbox-centered;
+            margin-bottom: $space-XXXXXS;
+
+            svg {
+                width: 2rem;
+                height: 2rem;
+                stroke: $color-error;
+            }
+        }
+
+        .title {
+            @include title-L;
+            color: white !important;
+        }
+
+        .description {
+            @include body-S;
+            color: $color-sidebar-icon !important;
+        }
+    }
+
+    .footer {
+        padding: $space-S $space-M;
+        display: flex;
+        gap: $space-XXXXS;
+        justify-content: flex-end;
+        border-top: 0.05rem solid $color-grey-200;
+
+        .cancelButton {
+            padding: $space-XXXXS $space-S;
+            border-radius: $border-radius-small;
+            background: transparent;
+            border: 0.05rem solid $color-grey-200 !important;
+            color: $color-text-secondary !important;
+            cursor: pointer;
+            transition: all $transition ease;
+            @include body-M;
+
+            &:hover {
+                border-color: $color-text-secondary !important;
+                color: $color-text-primary !important;
+                background: transparent !important;
+            }
+        }
+
+        .deleteButton {
+            display: flex;
+            align-items: center;
+            gap: $space-XXXXXS;
+            padding: $space-XXXXS $space-S;
+            border-radius: $border-radius-small;
+            background: $color-error !important;
+            border: none !important;
+            color: white !important;
+            cursor: pointer;
+            transition: background $transition ease;
+            @include title-S;
+
+            &:hover {
+                background: #dc2626 !important;
+            }
+
+            &:disabled {
+                opacity: 0.6;
+                cursor: not-allowed;
+            }
+
+            .buttonSpinner {
+                width: 1.4rem;
+                height: 1.4rem;
+                color: white;
+            }
+        }
+    }
+}

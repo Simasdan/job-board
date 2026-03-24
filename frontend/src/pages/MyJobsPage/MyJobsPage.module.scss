@@ -1,0 +1,256 @@
+@use '../../styles/tools' as *;
+
+.myJobsPage {
+    @include flex-column;
+    min-height: 100vh;
+
+    .hero {
+        background: $color-sidebar-bg;
+        padding: $space-XL $space-XL $space-L;
+        border-radius: $border-radius-regular $border-radius-regular 0 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .heroLeft {
+            @include flex-column;
+            gap: $space-XXXXXS;
+
+            h1 {
+                @include headline-M;
+                color: white;
+                letter-spacing: -0.04rem;
+            }
+
+            p {
+                @include body-M;
+                color: $color-sidebar-icon;
+            }
+        }
+
+        .createButton {
+            display: flex;
+            align-items: center;
+            gap: $space-XXXXXS;
+            padding: $space-XXXXS $space-S;
+            border-radius: $border-radius-small;
+            background: $color-accent;
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: background $transition ease;
+            @include title-S;
+
+            svg {
+                width: 1.4rem;
+                height: 1.4rem;
+            }
+
+            &:hover {
+                background: $color-accent-hover;
+            }
+        }
+    }
+
+    .content {
+        padding: $space-M $space-XL;
+        @include flex-column;
+        gap: $space-M;
+        flex: 1;
+
+        .loading {
+            @include flexbox-centered;
+            @include flex-column;
+            gap: $space-XXXXS;
+            padding: $space-XXXL;
+
+            .spinner {
+                width: 2.4rem;
+                height: 2.4rem;
+                color: $color-accent;
+            }
+
+            span {
+                @include body-M;
+                color: $color-text-secondary;
+            }
+        }
+
+        .empty {
+            @include flexbox-centered;
+            padding: $space-XXXL;
+
+            span {
+                @include body-M;
+                color: $color-text-secondary;
+            }
+        }
+
+        .jobList {
+            @include flex-column;
+            gap: $space-XXS;
+        }
+    }
+
+    .jobCard {
+        background: white;
+        border: 0.05rem solid $color-grey-200;
+        border-radius: $border-radius-regular;
+        padding: $space-S $space-M;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: $box-shadow-jobPostCard;
+        transition: border-color $transition ease;
+
+        &:hover {
+            border-color: $color-grey-300;
+        }
+
+        &.closedCard {
+            opacity: 0.7;
+        }
+
+        .cardLeft {
+            @include flex-column;
+            gap: $space-XXXXXS;
+            flex: 1;
+
+            .titleRow {
+                display: flex;
+                align-items: center;
+                gap: $space-XXXXS;
+
+                .title {
+                    @include title-M;
+                    color: $color-text-primary;
+                }
+
+                .badge {
+                    @include label-XXS;
+                    padding: 0.2rem $space-XXXXS;
+                    border-radius: $border-radius-XXlarge;
+                }
+
+                .badgePublished {
+                    background: $color-info-bg;
+                    color: $color-info;
+                }
+
+                .badgeDraft {
+                    background: $color-grey-100;
+                    color: $color-grey-500;
+                }
+
+                .badgeClosed {
+                    background: $color-error-bg;
+                    color: $color-error;
+                }
+            }
+
+            .metaRow {
+                display: flex;
+                align-items: center;
+                gap: $space-M;
+
+                .metaItem {
+                    display: flex;
+                    align-items: center;
+                    gap: $space-XXXXXS;
+                    @include body-S;
+                    color: $color-text-secondary;
+
+                    svg {
+                        width: 1.2rem;
+                        height: 1.2rem;
+                        flex-shrink: 0;
+                    }
+                }
+            }
+        }
+
+        .actions {
+            display: flex;
+            align-items: center;
+            gap: $space-XXXXS;
+            flex-shrink: 0;
+            margin-left: $space-M;
+
+            .applicationsButton {
+                display: flex;
+                align-items: center;
+                gap: $space-XXXXXS;
+                padding: $space-XXXXXS $space-XXXS;
+                border-radius: $border-radius-small;
+                background: transparent;
+                border: 0.05rem solid $color-grey-200;
+                color: $color-text-secondary;
+                cursor: pointer;
+                transition: all $transition ease;
+                @include body-S;
+
+                svg {
+                    width: 1.2rem;
+                    height: 1.2rem;
+                }
+
+                &:hover:not(:disabled) {
+                    border-color: $color-accent;
+                    color: $color-accent;
+                }
+
+                &:disabled {
+                    opacity: 0.4;
+                    cursor: not-allowed;
+                }
+            }
+
+            .editButton {
+                display: flex;
+                align-items: center;
+                gap: $space-XXXXXS;
+                padding: $space-XXXXXS $space-XXXS;
+                border-radius: $border-radius-small;
+                background: transparent;
+                border: 0.05rem solid $color-grey-200;
+                color: $color-text-secondary;
+                cursor: pointer;
+                transition: all $transition ease;
+                @include body-S;
+
+                svg {
+                    width: 1.2rem;
+                    height: 1.2rem;
+                }
+
+                &:hover {
+                    border-color: $color-accent;
+                    color: $color-accent;
+                }
+            }
+
+            .deleteButton {
+                display: flex;
+                align-items: center;
+                gap: $space-XXXXXS;
+                padding: $space-XXXXXS $space-XXXS;
+                border-radius: $border-radius-small;
+                background: transparent;
+                border: 0.05rem solid $color-error-bg;
+                color: $color-error;
+                cursor: pointer;
+                transition: all $transition ease;
+                @include body-S;
+
+                svg {
+                    width: 1.2rem;
+                    height: 1.2rem;
+                }
+
+                &:hover {
+                    background: $color-error-bg;
+                }
+            }
+        }
+    }
+}

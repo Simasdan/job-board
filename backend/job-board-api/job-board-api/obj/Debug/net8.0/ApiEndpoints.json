@@ -239,5 +239,15 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "job_board_api.Controllers.JobPostsController",
+    "Method": "GetMyJobPosts",
+    "RelativePath": "api/v1/jobposts/my-posts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
   }
 ]

@@ -1,0 +1,179 @@
+@use '../../styles/tools' as *;
+
+.dialogContent {
+    padding: 0 !important;
+    overflow: hidden;
+    border-radius: $border-radius-regular !important;
+    border: none !important;
+    max-width: 48rem !important;
+
+    .dialogHeader {
+        background: $color-sidebar-bg;
+        padding: $space-S $space-M;
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: $space-XXXXS;
+
+            .logoIcon {
+                width: 2.8rem;
+                height: 2.8rem;
+                background: $color-accent;
+                border-radius: $border-radius-small;
+                @include flexbox-centered;
+                flex-shrink: 0;
+
+                svg {
+                    width: 1.4rem;
+                    height: 1.4rem;
+                    stroke: white;
+                }
+            }
+
+            span {
+                @include title-M;
+                color: white;
+                letter-spacing: -0.03rem;
+            }
+        }
+    }
+
+    .formBody {
+        padding: $space-S $space-M;
+
+        .form {
+            @include flex-column;
+            gap: $space-XXS;
+
+            .field {
+                @include flex-column;
+                gap: $space-XXXXXS;
+
+                label {
+                    @include label-XS;
+                    color: $color-text-primary;
+
+                    .required {
+                        color: $color-error;
+                        margin-left: 0.2rem;
+                    }
+                }
+
+                input, textarea {
+                    padding: $space-XXXXS $space-XXXS;
+                    border-radius: $border-radius-small;
+                    border: 0.05rem solid $color-grey-200;
+                    font-family: inherit;
+                    outline: none;
+                    transition: border $transition ease;
+                    @include body-M;
+                    resize: vertical;
+
+                    &:focus {
+                        border-color: $color-accent;
+                    }
+
+                    &::placeholder {
+                        color: $color-grey-400;
+                    }
+                }
+            }
+
+            .salaryRow {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: $space-XXS;
+            }
+
+            .statusSelector {
+                display: flex;
+                gap: $space-XXXXS;
+
+                .statusButton {
+                    flex: 1;
+                    padding: $space-XXXXS;
+                    border-radius: $border-radius-small;
+                    background: transparent;
+                    border: 0.05rem solid $color-grey-200;
+                    color: $color-text-secondary;
+                    cursor: pointer;
+                    transition: all $transition ease;
+                    @include title-S;
+
+                    &:hover {
+                        border-color: $color-accent;
+                        color: $color-accent;
+                    }
+                }
+
+                .activeStatus {
+                    background: $color-accent;
+                    border-color: $color-accent;
+                    color: white;
+
+                    &:hover {
+                        color: white;
+                    }
+                }
+            }
+
+            .buttonRow {
+                display: flex;
+                justify-content: flex-end;
+                gap: $space-XXXXS;
+                margin-top: $space-XXXXXS;
+
+                .cancelButton {
+                    padding: $space-XXXXS $space-S;
+                    border-radius: $border-radius-small;
+                    background: transparent;
+                    border: 0.05rem solid $color-grey-200;
+                    color: $color-text-secondary;
+                    cursor: pointer;
+                    transition: all $transition ease;
+                    @include body-M;
+
+                    &:hover {
+                        border-color: $color-text-secondary;
+                        color: $color-text-primary;
+                    }
+
+                    &:disabled {
+                        opacity: 0.6;
+                        cursor: not-allowed;
+                    }
+                }
+
+                .submitButton {
+                    display: flex;
+                    align-items: center;
+                    gap: $space-XXXXXS;
+                    padding: $space-XXXXS $space-S;
+                    border-radius: $border-radius-small;
+                    background: $color-accent;
+                    border: none;
+                    color: white;
+                    cursor: pointer;
+                    transition: background $transition ease;
+                    @include title-S;
+
+                    &:hover {
+                        background: $color-accent-hover;
+                    }
+
+                    &:disabled {
+                        opacity: 0.6;
+                        cursor: not-allowed;
+                    }
+
+                    .buttonSpinner {
+                        width: 1.4rem;
+                        height: 1.4rem;
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+}

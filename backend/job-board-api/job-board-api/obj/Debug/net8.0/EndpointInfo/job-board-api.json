@@ -400,6 +400,18 @@
           }
         }
       }
+    },
+    "/api/v1/jobposts/my-posts": {
+      "get": {
+        "tags": [
+          "JobPosts"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
