@@ -37,7 +37,18 @@ namespace job_board_api.Controllers
             return Ok(jobPost);
         }
 
-        [HttpPost]
+        [HttpGet("my-posts")]
+        [Authorize(Roles = "Employer")]
+        public IActionResult GetMyJobPosts()
+        {
+            var userId = GetUserId();
+            if (userId == null) return Unauthorized();
+
+            var jobPosts = _jobPostService.GetEmployerJobPosts(userId.Value);
+            return Ok(jobPosts);
+        }
+
+            [HttpPost]
         [Authorize(Roles = "Employer")]
         public IActionResult CreateJobPost([FromBody] CreateJobPostDto dto)
         {

@@ -112,6 +112,33 @@ namespace job_board_api.Services
             return result;
         }
 
+        public List<JobPostVM> GetEmployerJobPosts(int userId)
+        {
+            var employer = _context.Employers.FirstOrDefault(e => e.UserId == userId);
+            if (employer == null) return new List<JobPostVM>();
+
+            return _context.JobPosts
+                .Include(jp => jp.Employer)
+                .Include(jp => jp.Applications)
+                .Where(jp => jp.EmployerId == employer.Id)
+                .OrderByDescending(jp => jp.CreatedAt)
+                .Select(jp => new JobPostVM
+                {
+                    Id = jp.Id,
+                    Title = jp.Title,
+                    Description = jp.Description,
+                    Location = jp.Location,
+                    SalaryMin = jp.SalaryMin,
+                    SalaryMax = jp.SalaryMax,
+                    Status = jp.Status.ToString(),
+                    CreatedAt = jp.CreatedAt,
+                    CompanyName = jp.Employer!.CompanyName,
+                    EmployerId = jp.EmployerId,
+                    ApplicationCount = jp.Applications != null ? jp.Applications.Count : 0
+                })
+                .ToList();
+        }
+
         public JobPostVM? CreateJobPost(CreateJobPostDto dto, int userId)
         {
             var employer = _context.Employers.FirstOrDefault(e => e.UserId == userId);
