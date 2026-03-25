@@ -4,7 +4,6 @@ import { Role } from '@/enums/Role';
 import { NavLinks } from '@/enums/NavLinks';
 import styles from './Sidebar.module.scss';
 import HouseIcon from '@/assets/icons/house.svg?react';
-import SearchIcon from '@/assets/icons/search.svg?react';
 import InfoIcon from '@/assets/icons/info.svg?react';
 import FileTextIcon from '@/assets/icons/file-text.svg?react';
 import BriefcaseIcon from '@/assets/icons/briefcase-business.svg?react';
@@ -47,11 +46,6 @@ const Sidebar = () => {
                     <NavLink to={NavLinks.Home} end className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}>
                         <HouseIcon />
                         <span>Home</span>
-                    </NavLink>
-
-                    <NavLink to={NavLinks.BrowseJobs} className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}>
-                        <SearchIcon />
-                        <span>Browse Jobs</span>
                     </NavLink>
 
                     {!isAuthenticated && (

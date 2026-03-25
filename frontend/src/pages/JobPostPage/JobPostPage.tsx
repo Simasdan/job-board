@@ -42,7 +42,7 @@ const JobPostPage = () => {
             setJobPost(response.data)
         } catch {
             toast.error('Job post not found.')
-            navigate(NavLinks.BrowseJobs)
+            navigate(NavLinks.Jobs)
         } finally {
             setLoading(false)
         }
@@ -187,7 +187,7 @@ const JobPostPage = () => {
         <div className={styles.jobPostPage}>
             <div className={styles.hero}>
                 <div className={styles.breadcrumb}>
-                    <span onClick={() => navigate(NavLinks.BrowseJobs)}>Browse Jobs</span>
+                    <span onClick={() => navigate(NavLinks.Home)}>Browse Jobs</span>
                     <span>/</span>
                     <span>{jobPost.title}</span>
                 </div>

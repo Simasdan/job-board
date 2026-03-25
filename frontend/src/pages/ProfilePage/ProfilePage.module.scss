@@ -1,0 +1,277 @@
+@use '../../styles/tools' as *;
+
+.profilePage {
+    @include flex-column;
+    min-height: 100vh;
+
+    .loadingState {
+        @include flexbox-centered;
+        @include flex-column;
+        gap: $space-XXXXS;
+        padding: $space-XXXL;
+
+        .spinner {
+            width: 2.4rem;
+            height: 2.4rem;
+            color: $color-accent;
+        }
+
+        span {
+            @include body-M;
+            color: $color-text-secondary;
+        }
+    }
+
+    .hero {
+        background: $color-sidebar-bg;
+        padding: $space-XL $space-XL $space-L;
+        border-radius: $border-radius-regular $border-radius-regular 0 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .heroLeft {
+            display: flex;
+            align-items: center;
+            gap: $space-M;
+
+            .avatar {
+                width: 5.6rem;
+                height: 5.6rem;
+                border-radius: 50%;
+                background: $color-accent;
+                color: white;
+                @include flexbox-centered;
+                @include headline-S;
+                flex-shrink: 0;
+            }
+
+            h1 {
+                @include title-XL;
+                color: white;
+                letter-spacing: -0.03rem;
+                margin-bottom: $space-XXXXXS;
+            }
+
+            .roleBadge {
+                @include label-XXS;
+                background: $color-sidebar-hover;
+                color: $color-sidebar-muted;
+                padding: 0.3rem $space-XXXXS;
+                border-radius: $border-radius-XXlarge;
+            }
+        }
+
+        .editButton {
+            display: flex;
+            align-items: center;
+            gap: $space-XXXXXS;
+            padding: $space-XXXXS $space-XXS;
+            border-radius: $border-radius-small;
+            background: transparent;
+            border: 0.05rem solid #334155;
+            color: $color-sidebar-muted;
+            cursor: pointer;
+            transition: all $transition ease;
+            @include body-M;
+
+            svg {
+                width: 1.3rem;
+                height: 1.3rem;
+            }
+
+            &:hover {
+                background: $color-sidebar-hover;
+                color: white;
+            }
+        }
+    }
+
+    .content {
+        padding: $space-M $space-XL;
+        flex: 1;
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: $space-XXS;
+
+            .infoCard {
+                background: white;
+                border: 0.05rem solid $color-grey-200;
+                border-radius: $border-radius-regular;
+                padding: $space-M;
+                box-shadow: $box-shadow-jobPostCard;
+                @include flex-column;
+                gap: $space-XXXXXS;
+
+                .cardLabel {
+                    @include label-XXS;
+                    color: $color-text-secondary;
+                    text-transform: uppercase;
+                    letter-spacing: $letter-spacing-tight * -1;
+                }
+
+                .cardValue {
+                    @include body-M;
+                    color: $color-text-primary;
+                    line-height: 1.6;
+                }
+
+                .link {
+                    display: flex;
+                    align-items: center;
+                    gap: $space-XXXXXS;
+                    @include body-M;
+                    color: $color-accent;
+                    text-decoration: none;
+                    transition: opacity $transition ease;
+
+                    svg {
+                        width: 1.4rem;
+                        height: 1.4rem;
+                    }
+
+                    &:hover {
+                        opacity: 0.8;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.dialogContent {
+        padding: 0 !important;
+        overflow: hidden;
+        border-radius: $border-radius-regular !important;
+        border: none !important;
+        max-width: 44rem !important;
+
+        .dialogHeader {
+            background: $color-sidebar-bg;
+            padding: $space-S $space-M;
+
+            .dialogLogo {
+                display: flex;
+                align-items: center;
+                gap: $space-XXXXS;
+
+                .dialogLogoIcon {
+                    width: 2.8rem;
+                    height: 2.8rem;
+                    background: $color-accent;
+                    border-radius: $border-radius-small;
+                    @include flexbox-centered;
+                    flex-shrink: 0;
+
+                    svg {
+                        width: 1.4rem;
+                        height: 1.4rem;
+                        stroke: white;
+                    }
+                }
+
+                span {
+                    @include title-M;
+                    color: white;
+                    letter-spacing: -0.03rem;
+                }
+            }
+        }
+
+        .formBody {
+            padding: $space-S $space-M;
+
+            .form {
+                @include flex-column;
+                gap: $space-XXS;
+
+                .field {
+                    @include flex-column;
+                    gap: $space-XXXXXS;
+
+                    label {
+                        @include label-XS;
+                        color: $color-text-primary;
+                    }
+
+                    input, textarea {
+                        padding: $space-XXXXS $space-XXXS;
+                        border-radius: $border-radius-small;
+                        border: 0.05rem solid $color-grey-200;
+                        font-family: inherit;
+                        outline: none;
+                        transition: border $transition ease;
+                        @include body-M;
+                        resize: vertical;
+
+                        &:focus {
+                            border-color: $color-accent;
+                        }
+
+                        &::placeholder {
+                            color: $color-grey-400;
+                        }
+                    }
+                }
+
+                .buttonRow {
+                    display: flex;
+                    justify-content: flex-end;
+                    gap: $space-XXXXS;
+                    margin-top: $space-XXXXXS;
+
+                    .cancelButton {
+                        padding: $space-XXXXS $space-S;
+                        border-radius: $border-radius-small;
+                        background: transparent;
+                        border: 0.05rem solid $color-grey-200;
+                        color: $color-text-secondary;
+                        cursor: pointer;
+                        transition: all $transition ease;
+                        @include body-M;
+
+                        &:hover {
+                            border-color: $color-text-secondary;
+                            color: $color-text-primary;
+                        }
+
+                        &:disabled {
+                            opacity: 0.6;
+                            cursor: not-allowed;
+                        }
+                    }
+
+                    .saveButton {
+                        display: flex;
+                        align-items: center;
+                        gap: $space-XXXXXS;
+                        padding: $space-XXXXS $space-S;
+                        border-radius: $border-radius-small;
+                        background: $color-accent;
+                        border: none;
+                        color: white;
+                        cursor: pointer;
+                        transition: background $transition ease;
+                        @include title-S;
+
+                        &:hover {
+                            background: $color-accent-hover;
+                        }
+
+                        &:disabled {
+                            opacity: 0.6;
+                            cursor: not-allowed;
+                        }
+
+                        .buttonSpinner {
+                            width: 1.4rem;
+                            height: 1.4rem;
+                            color: white;
+                        }
+                    }
+                }
+            }
+        }
+    }

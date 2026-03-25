@@ -1,0 +1,308 @@
+@use '../../styles/tools' as *;
+
+.myApplicationsPage {
+    @include flex-column;
+    min-height: 100vh;
+
+    .hero {
+        background: $color-sidebar-bg;
+        padding: $space-XL $space-XL $space-L;
+        border-radius: $border-radius-regular $border-radius-regular 0 0;
+
+        h1 {
+            @include headline-M;
+            color: white;
+            letter-spacing: -0.04rem;
+            margin-bottom: $space-XXXXXS;
+        }
+
+        p {
+            @include body-M;
+            color: $color-sidebar-icon;
+        }
+    }
+
+    .statsRow {
+        background: white;
+        border-bottom: 0.05rem solid $color-grey-200;
+        padding: $space-XXS $space-XL;
+        display: flex;
+        gap: $space-XXXS;
+
+        .statCard {
+            @include flex-column;
+            align-items: center;
+            background: $color-grey-100;
+            border-radius: $border-radius-small;
+            padding: $space-XXXXS $space-M;
+            min-width: 8rem;
+
+            .statLabel {
+                @include body-S;
+                color: $color-text-secondary;
+                margin-bottom: $space-XXXXXS;
+            }
+
+            .statValue {
+                @include headline-S;
+                color: $color-text-primary;
+            }
+
+            .statPending {
+                color: $color-grey-500;
+            }
+
+            .statReviewed {
+                color: $color-info;
+            }
+
+            .statAccepted {
+                color: $color-success;
+            }
+
+            .statRejected {
+                color: $color-error;
+            }
+        }
+    }
+
+    .content {
+        padding: $space-M $space-XL;
+        @include flex-column;
+        gap: $space-M;
+        flex: 1;
+
+        .loading {
+            @include flexbox-centered;
+            @include flex-column;
+            gap: $space-XXXXS;
+            padding: $space-XXXL;
+
+            .spinner {
+                width: 2.4rem;
+                height: 2.4rem;
+                color: $color-accent;
+            }
+
+            span {
+                @include body-M;
+                color: $color-text-secondary;
+            }
+        }
+
+        .empty {
+            @include flexbox-centered;
+            padding: $space-XXXL;
+
+            span {
+                @include body-M;
+                color: $color-text-secondary;
+            }
+        }
+
+        .applicationList {
+            @include flex-column;
+            gap: $space-XXS;
+        }
+    }
+
+    .applicationCard {
+        background: white;
+        border: 0.05rem solid $color-grey-200;
+        border-radius: 0 $border-radius-small $border-radius-small 0;
+        box-shadow: $box-shadow-jobPostCard;
+        border-left-width: 0.3rem;
+        border-left-style: solid;
+        transition: opacity $transition ease;
+
+        &.rejectedCard {
+            opacity: 0.7;
+        }
+
+        &.borderPending {
+            border-left-color: $color-grey-500;
+        }
+
+        &.borderReviewed {
+            border-left-color: $color-info;
+        }
+
+        &.borderAccepted {
+            border-left-color: $color-success;
+        }
+
+        &.borderRejected {
+            border-left-color: $color-error;
+        }
+
+        .cardContent {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: $space-S $space-M;
+
+            .jobInfo {
+                @include flex-column;
+                gap: $space-XXXXXS;
+
+                .jobTitle {
+                    @include title-M;
+                    color: $color-text-primary;
+                    cursor: pointer;
+                    transition: color $transition ease;
+
+                    &:hover {
+                        color: $color-accent;
+                    }
+                }
+
+                .metaRow {
+                    display: flex;
+                    align-items: center;
+                    gap: $space-XXS;
+                    @include body-S;
+                    color: $color-text-secondary;
+                }
+            }
+
+            .cardActions {
+                display: flex;
+                align-items: center;
+                gap: $space-XXXXS;
+                flex-shrink: 0;
+
+                .badge {
+                    @include label-XXS;
+                    padding: 0.3rem $space-XXXXS;
+                    border-radius: $border-radius-XXlarge;
+                }
+
+                .badgePending {
+                    background: $color-grey-100;
+                    color: $color-grey-500;
+                }
+
+                .badgeReviewed {
+                    background: $color-info-bg;
+                    color: $color-info;
+                }
+
+                .badgeAccepted {
+                    background: $color-success-bg;
+                    color: $color-success;
+                }
+
+                .badgeRejected {
+                    background: $color-error-bg;
+                    color: $color-error;
+                }
+
+                .withdrawButton {
+                    padding: $space-XXXXXS $space-XXXS;
+                    border-radius: $border-radius-small;
+                    background: transparent;
+                    border: 0.05rem solid $color-error-bg;
+                    color: $color-error;
+                    cursor: pointer;
+                    transition: all $transition ease;
+                    @include body-S;
+
+                    &:hover {
+                        background: $color-error-bg;
+                    }
+
+                    &:disabled {
+                        opacity: 0.4;
+                        cursor: not-allowed;
+                        border-color: $color-grey-200;
+                        color: $color-grey-400;
+
+                        &:hover {
+                            background: transparent;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .withdrawDialog {
+        padding: 0 !important;
+        overflow: hidden;
+        border-radius: $border-radius-regular !important;
+        border: none !important;
+        max-width: 38rem !important;
+
+        .withdrawDialogHeader {
+            background: $color-sidebar-bg;
+            padding: $space-M $space-M $space-S;
+            @include flex-column;
+            gap: $space-XXXXS;
+            text-align: center;
+
+            .withdrawDialogTitle {
+                @include title-L;
+                color: white !important;
+            }
+
+            .withdrawDialogDescription {
+                @include body-S;
+                color: $color-sidebar-icon !important;
+            }
+        }
+
+        .withdrawDialogFooter {
+            padding: $space-S $space-M;
+            display: flex;
+            gap: $space-XXXXS;
+            justify-content: flex-end;
+            border-top: 0.05rem solid $color-grey-200;
+
+            .cancelButton {
+                padding: $space-XXXXS $space-S;
+                border-radius: $border-radius-small;
+                background: transparent;
+                border: 0.05rem solid $color-grey-200 !important;
+                color: $color-text-secondary !important;
+                cursor: pointer;
+                transition: all $transition ease;
+                @include body-M;
+
+                &:hover {
+                    border-color: $color-text-secondary !important;
+                    color: $color-text-primary !important;
+                    background: transparent !important;
+                }
+            }
+
+            .confirmWithdrawButton {
+                display: flex;
+                align-items: center;
+                gap: $space-XXXXXS;
+                padding: $space-XXXXS $space-S;
+                border-radius: $border-radius-small;
+                background: $color-error !important;
+                border: none !important;
+                color: white !important;
+                cursor: pointer;
+                transition: background $transition ease;
+                @include title-S;
+
+                &:hover {
+                    background: #dc2626 !important;
+                }
+
+                &:disabled {
+                    opacity: 0.6;
+                    cursor: not-allowed;
+                }
+
+                .buttonSpinner {
+                    width: 1.4rem;
+                    height: 1.4rem;
+                    color: white;
+                }
+            }
+        }
+    }
+}

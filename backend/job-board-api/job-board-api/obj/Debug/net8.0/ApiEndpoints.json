@@ -32,6 +32,58 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "job_board_api.Controllers.CandidatesController",
+    "Method": "GetMyProfile",
+    "RelativePath": "api/v1/candidates/my-profile",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "job_board_api.Controllers.CandidatesController",
+    "Method": "UpdateMyProfile",
+    "RelativePath": "api/v1/candidates/my-profile",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "job_board_api.Data.DTOs.UpdateCandidateProfileDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "job_board_api.Controllers.EmployersController",
+    "Method": "GetMyProfile",
+    "RelativePath": "api/v1/employers/my-profile",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "job_board_api.Controllers.EmployersController",
+    "Method": "UpdateMyProfile",
+    "RelativePath": "api/v1/employers/my-profile",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "job_board_api.Data.DTOs.UpdateEmployerProfileDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "job_board_api.Controllers.JobApplicationsController",
     "Method": "UpdateJobApplicationStatus",
     "RelativePath": "api/v1/jobapplications/{id}",

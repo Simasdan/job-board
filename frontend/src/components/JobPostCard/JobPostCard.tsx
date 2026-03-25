@@ -13,7 +13,7 @@ const JobPostCard = ({ jobPost }: JobPostCardProps) => {
     const navigate = useNavigate()
 
     const handleClick = () => {
-        navigate(`${NavLinks.BrowseJobs}/${jobPost.id}`)
+        navigate(`${NavLinks.Jobs}/${jobPost.id}`)
     }
 
     return (

@@ -20,11 +20,7 @@ export const router = createBrowserRouter([
                 element: <HomePage />
             },
             {
-                path: NavLinks.BrowseJobs,
-                element: <JobPostPage />
-            },
-            {
-                path: `${NavLinks.BrowseJobs}/:id`,
+                path: `${NavLinks.Jobs}/:id`,
                 element: <JobPostPage />
             },
             {
