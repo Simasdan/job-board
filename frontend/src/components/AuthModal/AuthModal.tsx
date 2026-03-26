@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
     Dialog,
     DialogContent,
     DialogHeader,
+    DialogTitle
 } from '@/components/ui/dialog'
 import { useAuth } from '@/context/AuthContext'
 import { Role } from '@/enums/Role'
@@ -91,10 +92,19 @@ const AuthModal = ({ isOpen, onClose, defaultTab = 'login' }: AuthModalProps) =>
         }
     }
 
+    useEffect(() => {
+        if (isOpen) {
+            setActiveTab(defaultTab)
+        }
+    }, [isOpen, defaultTab])
+
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
             <DialogContent className={styles.dialogContent}>
                 <DialogHeader className={styles.dialogHeader}>
+                    <DialogTitle className={styles.visuallyHidden}>
+                        {activeTab === 'login' ? 'Sign in' : 'Create account'}
+                    </DialogTitle>
                     <div className={styles.logo}>
                         <div className={styles.logoIcon}>
                             <BriefcaseIcon />
@@ -134,6 +144,7 @@ const AuthModal = ({ isOpen, onClose, defaultTab = 'login' }: AuthModalProps) =>
                                 <input
                                     type='password'
                                     placeholder='••••••••'
+                                    autoComplete='current-password'
                                     value={loginData.password}
                                     onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
                                 />
@@ -171,6 +182,7 @@ const AuthModal = ({ isOpen, onClose, defaultTab = 'login' }: AuthModalProps) =>
                                 <input
                                     type='password'
                                     placeholder='••••••••'
+                                    autoComplete='new-password'
                                     value={registerData.password}
                                     onChange={(e) => setRegisterData({ ...registerData, password: e.target.value })}
                                 />

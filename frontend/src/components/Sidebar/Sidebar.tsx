@@ -9,24 +9,10 @@ import FileTextIcon from '@/assets/icons/file-text.svg?react';
 import BriefcaseIcon from '@/assets/icons/briefcase-business.svg?react';
 import UserIcon from '@/assets/icons/user.svg?react';
 import LogOutIcon from '@/assets/icons/log-out.svg?react';
-import { useState } from 'react';
-import AuthModal from '@/components/AuthModal/AuthModal';
 import LogoutDialog from '../LogoutDialog/LogoutDialog';
 
 const Sidebar = () => {
-    const { user, isAuthenticated, logout } = useAuth()
-    const [modalOpen, setModalOpen] = useState(false)
-    const [modalTab, setModalTab] = useState<'login' | 'register'>('login')
-
-    const openLogin = () => {
-        setModalTab('login')
-        setModalOpen(true)
-    }
-
-    const openRegister = () => {
-        setModalTab('register')
-        setModalOpen(true)
-    }
+    const { user, isAuthenticated, logout, openAuthModal } = useAuth()
 
     return (
         <>
@@ -43,13 +29,25 @@ const Sidebar = () => {
                 {/* Nav */}
                 <nav className={styles.nav}>
 
-                    <NavLink to={NavLinks.Home} end className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}>
+                    <NavLink
+                        to={NavLinks.Home}
+                        end
+                        className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}
+                        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                    >
                         <HouseIcon />
                         <span>Home</span>
                     </NavLink>
 
                     {!isAuthenticated && (
-                        <a href={NavLinks.HowItWorks} className={styles.navLink}>
+                        <a
+                            className={styles.navLink}
+                            onClick={() => {
+                                const section = document.getElementById('how-it-works')
+                                section?.scrollIntoView({ behavior: 'smooth' })
+                            }}
+                            style={{ cursor: 'pointer' }}
+                        >
                             <InfoIcon />
                             <span>How it works</span>
                         </a>
@@ -103,22 +101,16 @@ const Sidebar = () => {
                         </>
                     ) : (
                         <>
-                            <button className={styles.signInButton} onClick={openLogin}>
+                            <button className={styles.signInButton} onClick={() => openAuthModal('login')}>
                                 Sign in
                             </button>
-                            <button className={styles.registerButton} onClick={openRegister}>
+                            <button className={styles.registerButton} onClick={() => openAuthModal('register')}>
                                 Create account
                             </button>
                         </>
                     )}
                 </div>
             </aside>
-
-            <AuthModal
-                isOpen={modalOpen}
-                onClose={() => setModalOpen(false)}
-                defaultTab={modalTab}
-            />
         </>
 
     )

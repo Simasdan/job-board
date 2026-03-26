@@ -6,6 +6,8 @@ import Pagination from '@/components/Pagination/Pagination'
 import { Spinner } from '@/components/ui/spinner'
 import axiosInstance from '@/api/axiosInstance'
 import styles from './HomePage.module.scss'
+import { useAuth } from '@/context/AuthContext'
+import HowItWorks from '@/components/HowItWorks/HowItWorks'
 
 const HomePage = () => {
   const [jobPosts, setJobPosts] = useState<PagedResult<JobPost> | null>(null)
@@ -14,6 +16,7 @@ const HomePage = () => {
     page: 1,
     pageSize: 5
   })
+  const { isAuthenticated } = useAuth()
 
   useEffect(() => {
     fetchJobPosts(query)
@@ -72,6 +75,7 @@ const HomePage = () => {
           </>
         )}
       </div>
+      {!isAuthenticated && <HowItWorks />}
     </div>
   )
 }

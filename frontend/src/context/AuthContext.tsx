@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from 'react'
 import type { ReactNode } from 'react'
 import { Role } from '@/enums/Role';
+import AuthModal from '@/components/AuthModal/AuthModal';
 
 interface User {
     email: string;
@@ -13,6 +14,7 @@ interface AuthContextType {
     login: (email: string, token: string, role: Role) => void;
     logout: () => void;
     isAuthenticated: boolean;
+    openAuthModal: (tab?: 'login' | 'register') => void;
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -25,10 +27,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         const role = localStorage.getItem('role')
 
         if (token && email && role) {
-            return { token, email, role: role as Role}
+            return { token, email, role: role as Role }
         }
         return null
     });
+    const [authModalOpen, setAuthModalOpen] = useState(false);
+    const [authModalTab, setAuthModalTab] = useState<'login' | 'register'>('login');
 
     const login = (email: string, token: string, role: Role) => {
         localStorage.setItem('token', token)
@@ -44,14 +48,25 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setUser(null)
     };
 
+    const openAuthModal = (tab: 'login' | 'register' = 'login') => {
+        setAuthModalTab(tab)
+        setAuthModalOpen(true)
+    }
+
     return (
         <AuthContext.Provider value={{
             user,
             login,
             logout,
-            isAuthenticated: user !== null
+            isAuthenticated: user !== null,
+            openAuthModal
         }}>
             {children}
+            <AuthModal
+                isOpen={authModalOpen}
+                onClose={() => setAuthModalOpen(false)}
+                defaultTab={authModalTab}
+            />
         </AuthContext.Provider>
     )
 }

@@ -1,0 +1,98 @@
+@use '../../styles/tools' as *;
+
+.howItWorks {
+    background: $color-sidebar-bg;
+    border-radius: $border-radius-regular;
+    padding: $space-XXXL $space-XL;
+    margin: 0 $space-XL $space-XL;
+
+    .header {
+        text-align: center;
+        margin-bottom: $space-L;
+
+        h2 {
+            @include headline-S;
+            color: white;
+            letter-spacing: -0.04rem;
+            margin-bottom: $space-XXXXXS;
+        }
+
+        p {
+            @include body-M;
+            color: $color-sidebar-icon;
+        }
+    }
+
+    .steps {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: $space-XXS;
+
+        .step {
+            background: $color-sidebar-hover;
+            border-radius: $border-radius-regular;
+            padding: $space-M;
+            @include flex-column;
+            gap: $space-S;
+
+            .stepIcon {
+                width: 4rem;
+                height: 4rem;
+                background: $color-accent;
+                border-radius: $border-radius-small;
+                @include flexbox-centered;
+                flex-shrink: 0;
+
+                svg {
+                    width: 1.8rem;
+                    height: 1.8rem;
+                    stroke: white;
+                }
+            }
+
+            .stepContent {
+                @include flex-column;
+                gap: $space-XXXXXS;
+
+                .stepLabel {
+                    @include label-XXS;
+                    color: $color-sidebar-icon;
+                    text-transform: uppercase;
+                    letter-spacing: 0.06rem;
+                }
+
+                h3 {
+                    @include title-M;
+                    color: white;
+                }
+
+                p {
+                    @include body-M;
+                    color: $color-sidebar-icon;
+                    line-height: 1.6;
+                }
+            }
+        }
+    }
+
+    .cta {
+        display: flex;
+        justify-content: center;
+        margin-top: $space-L;
+
+        .ctaButton {
+            padding: $space-XXXXS $space-S;
+            border-radius: $border-radius-small;
+            background: $color-accent;
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: background $transition ease;
+            @include title-S;
+
+            &:hover {
+                background: $color-accent-hover;
+            }
+        }
+    }
+}
