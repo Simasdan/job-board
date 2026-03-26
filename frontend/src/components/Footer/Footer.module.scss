@@ -1,0 +1,100 @@
+@use '../../styles/tools' as *;
+
+.footer {
+    background: $color-sidebar-bg;
+    border-top: 0.05rem solid $color-sidebar-hover;
+    padding: $space-XL $space-XL $space-M;
+
+    .content {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: $space-M;
+
+        .brand {
+            @include flex-column;
+            gap: $space-XXXXS;
+            max-width: 22rem;
+
+            .logo {
+                display: flex;
+                align-items: center;
+                gap: $space-XXXXS;
+
+                .logoIcon {
+                    width: 2.4rem;
+                    height: 2.4rem;
+                    background: $color-accent;
+                    border-radius: $border-radius-small;
+                    @include flexbox-centered;
+                    flex-shrink: 0;
+
+                    svg {
+                        width: 1.2rem;
+                        height: 1.2rem;
+                        stroke: white;
+                    }
+                }
+
+                span {
+                    @include title-S;
+                    color: white;
+                    font-weight: 600;
+                }
+            }
+
+            .description {
+                @include body-S;
+                color: $color-sidebar-icon;
+                line-height: 1.6;
+            }
+        }
+
+        .github {
+            @include flex-column;
+            gap: $space-XXXXS;
+            align-items: flex-end;
+
+            .linksLabel {
+                @include label-XXS;
+                color: $color-sidebar-muted;
+                text-transform: uppercase;
+                letter-spacing: 0.06rem;
+                margin-bottom: $space-XXXXXS;
+            }
+
+            .githubLink {
+                display: flex;
+                align-items: center;
+                gap: $space-XXXXXS;
+                @include body-S;
+                color: $color-sidebar-icon;
+                text-decoration: none;
+                transition: color $transition ease;
+
+                svg {
+                    width: 1.4rem;
+                    height: 1.4rem;
+                }
+
+                &:hover {
+                    color: white;
+                }
+            }
+        }
+    }
+
+    .bottomBar {
+        border-top: 0.05rem solid $color-sidebar-hover;
+        padding-top: $space-XXS;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        p {
+            @include body-S;
+            color: $color-sidebar-icon;
+            opacity: 0.6;
+        }
+    }
+}
