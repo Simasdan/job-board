@@ -181,5 +181,64 @@
                 color: white;
             }
         }
+
+        .demoDivider {
+            display: flex;
+            align-items: center;
+            gap: $space-XXXXXS;
+            margin: $space-XXXXXS 0;
+
+            &::before,
+            &::after {
+                content: '';
+                flex: 1;
+                height: 0.05rem;
+                background: #1e293b;
+            }
+
+            span {
+                @include body-S;
+                color: $color-sidebar-icon;
+                white-space: nowrap;
+                font-size: 1.1rem;
+            }
+        }
+
+        .demoButton {
+            width: 100%;
+            padding: $space-XXXXXS $space-XXXXS;
+            border-radius: $border-radius-small;
+            background: transparent;
+            border: 0.05rem dashed #334155;
+            color: $color-sidebar-icon;
+            cursor: pointer;
+            transition: all $transition ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: $space-XXXXXS;
+            @include body-S;
+
+            svg {
+                width: 1.3rem;
+                height: 1.3rem;
+            }
+
+            &:hover:not(:disabled) {
+                border-color: $color-sidebar-muted;
+                color: white;
+            }
+
+            &:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+
+            .demoSpinner {
+                width: 1.3rem;
+                height: 1.3rem;
+                color: $color-sidebar-muted;
+            }
+        }
     }
 }

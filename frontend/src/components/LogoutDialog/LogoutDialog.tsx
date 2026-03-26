@@ -25,6 +25,7 @@ const LogoutDialog = ({ onConfirm, trigger }: LogoutDialogProps) => {
         setSigningOut(true)
         await new Promise((resolve) => setTimeout(resolve, 1000))
         onConfirm()
+        window.scrollTo({ top: 0, behavior: 'smooth' })
         setSigningOut(false)
     }
 
