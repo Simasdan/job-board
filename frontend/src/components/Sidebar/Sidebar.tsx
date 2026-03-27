@@ -11,11 +11,21 @@ import BriefcaseIcon from '@/assets/icons/briefcase-business.svg?react'
 import UserIcon from '@/assets/icons/user.svg?react'
 import LogOutIcon from '@/assets/icons/log-out.svg?react'
 import LogoutDialog from '../LogoutDialog/LogoutDialog'
+import ChevronLeftIcon from '@/assets/icons/chevron-left.svg?react'
+import ChevronRightIcon from '@/assets/icons/chevron-right.svg?react'
 import { toast } from 'sonner'
 import axiosInstance from '@/api/axiosInstance'
 import { Spinner } from '@/components/ui/spinner'
 
-const Sidebar = () => {
+interface SidebarProps {
+    isTablet?: boolean
+    sidebarExpanded?: boolean
+    onToggle?: () => void
+    onNavigate?: () => void
+}
+
+const Sidebar = ({ isTablet = false, sidebarExpanded = false, onToggle, onNavigate }: SidebarProps) => {
+    const isCollapsed = isTablet && !sidebarExpanded;
     const { user, isAuthenticated, logout, openAuthModal, login } = useAuth()
     const [demoLoading, setDemoLoading] = useState<'candidate' | 'employer' | null>(null)
 
@@ -29,6 +39,7 @@ const Sidebar = () => {
             login(response.data.email, response.data.token, response.data.role as Role)
             toast.success(`Logged in as demo ${type}!`)
             window.scrollTo({ top: 0, behavior: 'smooth' })
+            onNavigate?.()
         } catch {
             toast.error('Demo login failed.')
         } finally {
@@ -37,15 +48,26 @@ const Sidebar = () => {
     }
 
     return (
-        <aside className={styles.sidebar}>
+        <aside className={`
+            ${styles.sidebar} 
+            ${isCollapsed ? styles.collapsed : ''} 
+            ${isTablet && sidebarExpanded ? styles.tabletExpanded : ''}
+        `}>
 
             {/* Logo */}
             <div className={styles.logo}>
                 <div className={styles.logoIcon}>
                     <BriefcaseIcon />
                 </div>
-                <span>Job Board</span>
+                {!isCollapsed && <span>Job Board</span>}
             </div>
+
+            {/* Tablet toggle button */}
+            {isTablet && (
+                <button className={styles.toggleButton} onClick={onToggle}>
+                    {isCollapsed ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+                </button>
+            )}
 
             {/* Nav */}
             <nav className={styles.nav}>
@@ -53,10 +75,13 @@ const Sidebar = () => {
                     to={NavLinks.Home}
                     end
                     className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}
-                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                    onClick={() => {
+                        window.scrollTo({ top: 0, behavior: 'smooth' })
+                        onNavigate?.()
+                    }}
                 >
                     <HouseIcon />
-                    <span>Home</span>
+                    {!isCollapsed && <span>Home</span>}
                 </NavLink>
 
                 {!isAuthenticated && (
@@ -65,32 +90,54 @@ const Sidebar = () => {
                         onClick={() => {
                             const section = document.getElementById('how-it-works')
                             section?.scrollIntoView({ behavior: 'smooth' })
+                            onNavigate?.()
                         }}
                         style={{ cursor: 'pointer' }}
                     >
                         <InfoIcon />
-                        <span>How it works</span>
+                        {!isCollapsed && <span>How it works</span>}
                     </a>
                 )}
 
                 {isAuthenticated && user?.role === Role.Candidate && (
-                    <NavLink to={NavLinks.MyApplications} className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}>
+                    <NavLink
+                        to={NavLinks.MyApplications}
+                        className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}
+                        onClick={() => {
+                            window.scrollTo({ top: 0, behavior: 'smooth' })
+                            onNavigate?.()
+                        }}
+                    >
                         <FileTextIcon />
-                        <span>My Applications</span>
+                        {!isCollapsed && <span>My Applications</span>}
                     </NavLink>
                 )}
 
                 {isAuthenticated && user?.role === Role.Employer && (
-                    <NavLink to={NavLinks.MyJobs} className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}>
+                    <NavLink
+                        to={NavLinks.MyJobs}
+                        className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}
+                        onClick={() => {
+                            window.scrollTo({ top: 0, behavior: 'smooth' })
+                            onNavigate?.()
+                        }}
+                    >
                         <BriefcaseIcon />
-                        <span>My Jobs</span>
+                        {!isCollapsed && <span>My Jobs</span>}
                     </NavLink>
                 )}
 
                 {isAuthenticated && (
-                    <NavLink to={NavLinks.Profile} className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}>
+                    <NavLink
+                        to={NavLinks.Profile}
+                        className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}
+                        onClick={() => {
+                            window.scrollTo({ top: 0, behavior: 'smooth' })
+                            onNavigate?.()
+                        }}
+                    >
                         <UserIcon />
-                        <span>Profile</span>
+                        {!isCollapsed && <span>Profile</span>}
                     </NavLink>
                 )}
             </nav>
@@ -109,28 +156,33 @@ const Sidebar = () => {
                             </div>
                         </div>
                         <LogoutDialog
-                            onConfirm={logout}
+                            onConfirm={() => {
+                                logout()
+                                onNavigate?.()
+                            }}
                             trigger={
                                 <button className={styles.logoutButton}>
                                     <LogOutIcon />
-                                    Logout
+                                    {!isCollapsed && <span>Logout</span>}
                                 </button>
                             }
                         />
                     </>
                 ) : (
                     <>
-                        <button className={styles.signInButton} onClick={() => openAuthModal('login')}>
-                            Sign in
-                        </button>
-                        <button className={styles.registerButton} onClick={() => openAuthModal('register')}>
-                            Create account
-                        </button>
-
-                        <div className={styles.demoDivider}>
-                            <span>or try a demo</span>
-                        </div>
-
+                        {!isCollapsed && (
+                            <>
+                                <button className={styles.signInButton} onClick={() => { openAuthModal('login'); onNavigate?.() }}>
+                                    Sign in
+                                </button>
+                                <button className={styles.registerButton} onClick={() => { openAuthModal('register'); onNavigate?.() }}>
+                                    Create account
+                                </button>
+                                <div className={styles.demoDivider}>
+                                    <span>or try a demo</span>
+                                </div>
+                            </>
+                        )}
                         <button
                             className={styles.demoButton}
                             onClick={() => handleDemoLogin('candidate')}
@@ -141,9 +193,8 @@ const Sidebar = () => {
                             ) : (
                                 <UserIcon />
                             )}
-                            Try as Candidate
+                            {!isCollapsed && 'Try as Candidate'}
                         </button>
-
                         <button
                             className={styles.demoButton}
                             onClick={() => handleDemoLogin('employer')}
@@ -154,7 +205,7 @@ const Sidebar = () => {
                             ) : (
                                 <BriefcaseIcon />
                             )}
-                            Try as Employer
+                            {!isCollapsed && 'Try as Employer'}
                         </button>
                     </>
                 )}

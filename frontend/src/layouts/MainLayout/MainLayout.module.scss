@@ -5,6 +5,10 @@
     grid-template-columns: 28rem 1fr;
     min-height: 100vh;
 
+    @media (max-width: 1049px) {
+        grid-template-columns: 6rem 1fr;
+    }
+
     .content {
         display: flex;
         flex-direction: column;
@@ -22,4 +26,21 @@
             @include body-M;
         }
     }
+}
+
+.backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 44;
+}
+
+.expandedSidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 24rem;
+    z-index: 45;
+    overflow: visible;
 }

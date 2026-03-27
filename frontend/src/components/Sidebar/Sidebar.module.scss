@@ -8,6 +8,7 @@
     padding: $space-S $space-XXS;
     position: sticky;
     top: 0;
+    overflow: visible;
 
     .logo {
         @include flexbox-centered;
@@ -35,6 +36,34 @@
             @include title-M;
             color: white;
             letter-spacing: -0.03rem;
+        }
+    }
+
+    .toggleButton {
+        position: absolute;
+        right: -1.2rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 2.4rem;
+        height: 2.4rem;
+        border-radius: 50%;
+        background: $color-sidebar-hover;
+        border: 0.05rem solid #334155;
+        color: $color-sidebar-muted;
+        cursor: pointer;
+        @include flexbox-centered;
+        z-index: 10;
+        transition: all $transition ease;
+
+        svg {
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+
+        &:hover {
+            background: $color-accent;
+            color: white;
+            border-color: $color-accent;
         }
     }
 
@@ -239,6 +268,49 @@
                 height: 1.3rem;
                 color: $color-sidebar-muted;
             }
+        }
+    }
+}
+
+.collapsed {
+    width: 6rem;
+    padding: $space-S $space-XXXXXS;
+    align-items: center;
+
+    .nav {
+        .navLink {
+            justify-content: center;
+            padding: $space-XXXXS;
+        }
+    }
+
+    .bottom {
+        align-items: center;
+
+        .userCard {
+            justify-content: center;
+            padding: $space-XXXXS;
+            width: 100%;
+
+            .userInfo {
+                display: none;
+            }
+        }
+
+        .logoutButton {
+            justify-content: center;
+            width: 100%;
+            padding: $space-XXXXS;
+
+            span {
+                display: none;
+            }
+        }
+
+        .demoButton {
+            justify-content: center;
+            padding: $space-XXXXS;
+            width: 100%;
         }
     }
 }
