@@ -16,6 +16,14 @@ const JobPostCard = ({ jobPost }: JobPostCardProps) => {
         navigate(`${NavLinks.Jobs}/${jobPost.id}`)
     }
 
+    const formatDate = (dateString: string) => {
+        return new Date(dateString).toLocaleDateString('en-GB', {
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric'
+        })
+    }
+
     return (
         <div className={styles.card} onClick={handleClick}>
             <div className={styles.cardHeader}>
@@ -41,6 +49,11 @@ const JobPostCard = ({ jobPost }: JobPostCardProps) => {
             </div>
 
             <p className={styles.description}>{jobPost.description}</p>
+
+            <div className={styles.mobileFooter}>
+                <span className={styles.mobileDate}>{formatDate(jobPost.createdAt)}</span>
+                <span className={styles.mobileSalary}>€{jobPost.salaryMin.toLocaleString()} – €{jobPost.salaryMax.toLocaleString()}</span>
+            </div>
         </div>
     )
 }

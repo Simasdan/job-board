@@ -13,7 +13,6 @@ const MainLayout = () => {
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth
-      console.log('width:', width, 'isMobile:', width < 600)
       setIsTablet(width >= 600 && width < 1050)
       setIsMobile(width < 600)
       if (width >= 1050) setSidebarExpanded(false)

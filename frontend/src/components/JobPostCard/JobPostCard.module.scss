@@ -82,4 +82,73 @@
         @include body-M;
         color: $color-text-secondary;
     }
+
+
+    @media (max-width: 750px) {
+        padding: $space-S;
+
+        .cardHeader {
+            flex-direction: column;
+            gap: $space-XXXXXS;
+            margin-bottom: $space-XXXS;
+
+            .titleWrapper {
+                justify-content: space-between;
+                width: 100%;
+
+                .title {
+                    @include title-S;
+                    flex: 1;
+                }
+            }
+
+            .salary {
+                display: none;
+            }
+        }
+
+        .meta {
+            gap: $space-XXXXXS;
+            margin-bottom: 0;
+
+            .metaItem {
+                @include body-S;
+
+                &:not(:last-child)::after {
+                    content: '·';
+                    margin-left: $space-XXXXXS;
+                    color: $color-grey-300;
+                }
+            }
+        }
+
+        .description {
+            margin-top: 1.2rem;
+            @include body-S;
+        }
+
+        .mobileFooter {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 0.05rem solid $color-grey-200;
+            padding-top: $space-XXXS;
+            margin-top: $space-XXXS;
+
+            .mobileDate {
+                @include body-S;
+                color: $color-text-secondary;
+            }
+
+            .mobileSalary {
+                @include title-S;
+                color: $color-text-primary;
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+.mobileFooter {
+    display: none;
 }

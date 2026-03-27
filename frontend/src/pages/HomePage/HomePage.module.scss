@@ -9,11 +9,19 @@
         padding: $space-XL $space-XL $space-L;
         border-radius: $border-radius-regular $border-radius-regular 0 0;
 
+        @media (max-width: 599px) {
+            padding: $space-S $space-S;
+        }
+
         h1 {
             @include headline-M;
             color: white;
             margin-bottom: $space-XXXXXS;
             letter-spacing: -0.04rem;
+
+            @media (max-width: 400px) {
+                font-size: 2rem;
+            }
         }
 
         p {
@@ -27,6 +35,15 @@
         @include flex-column;
         gap: $space-M;
         flex: 1;
+
+        @media (max-width: 750px) {
+            padding: $space-M 2.8rem;
+        }
+
+
+        @media (max-width: 600px) {
+            padding: $space-M 0;
+        }
 
         .loading {
             @include flexbox-centered;

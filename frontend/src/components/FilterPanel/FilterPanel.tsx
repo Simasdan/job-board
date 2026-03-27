@@ -61,49 +61,51 @@ const FilterPanel = ({ onSearch }: FilterPanelProps) => {
     return (
         <div className={styles.filterPanel}>
             <div className={styles.searchRow}>
-                <div className={styles.inputWrapper}>
-                    <label>What job are you looking for?</label>
-                    <div className={styles.inputWithIcon}>
-                        <SearchIcon />
+                <div className={styles.inputs}>
+                    <div className={styles.inputWrapper}>
+                        <label>What job are you looking for?</label>
+                        <div className={styles.inputWithIcon}>
+                            <SearchIcon />
+                            <input
+                                type='text'
+                                placeholder='e.g. Senior Developer'
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                                onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+                            />
+                        </div>
+                    </div>
+
+                    <div className={styles.inputWrapper}>
+                        <label>Location</label>
                         <input
                             type='text'
-                            placeholder='e.g. Senior Developer'
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
+                            placeholder='e.g. Vilnius'
+                            value={location}
+                            onChange={(e) => setLocation(e.target.value)}
                             onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
                         />
                     </div>
-                </div>
 
-                <div className={styles.inputWrapper}>
-                    <label>Location</label>
-                    <input
-                        type='text'
-                        placeholder='e.g. Vilnius'
-                        value={location}
-                        onChange={(e) => setLocation(e.target.value)}
-                        onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-                    />
-                </div>
+                    <div className={styles.inputWrapper}>
+                        <label>Min salary</label>
+                        <input
+                            type='number'
+                            placeholder='0'
+                            value={salaryMin}
+                            onChange={(e) => setSalaryMin(e.target.value)}
+                        />
+                    </div>
 
-                <div className={styles.inputWrapper}>
-                    <label>Min salary</label>
-                    <input
-                        type='number'
-                        placeholder='0'
-                        value={salaryMin}
-                        onChange={(e) => setSalaryMin(e.target.value)}
-                    />
-                </div>
-
-                <div className={styles.inputWrapper}>
-                    <label>Max salary</label>
-                    <input
-                        type='number'
-                        placeholder='Any'
-                        value={salaryMax}
-                        onChange={(e) => setSalaryMax(e.target.value)}
-                    />
+                    <div className={styles.inputWrapper}>
+                        <label>Max salary</label>
+                        <input
+                            type='number'
+                            placeholder='Any'
+                            value={salaryMax}
+                            onChange={(e) => setSalaryMax(e.target.value)}
+                        />
+                    </div>
                 </div>
 
                 <div className={styles.buttonGroup}>
@@ -120,19 +122,37 @@ const FilterPanel = ({ onSearch }: FilterPanelProps) => {
 
             <div className={styles.sortRow}>
                 <span className={styles.sortLabel}>Sort by</span>
-                {sortOptions.map((option) => (
-                    <button
-                        key={option.label}
-                        className={
-                            sortBy === option.sortBy && sortOrder === option.sortOrder
-                                ? `${styles.sortPill} ${styles.activePill}`
-                                : styles.sortPill
-                        }
-                        onClick={() => handleSortChange(option.sortBy, option.sortOrder)}
-                    >
-                        {option.label}
-                    </button>
-                ))}
+
+                <div className={styles.sortPills}>
+                    {sortOptions.map((option) => (
+                        <button
+                            key={option.label}
+                            className={
+                                sortBy === option.sortBy && sortOrder === option.sortOrder
+                                    ? `${styles.sortPill} ${styles.activePill}`
+                                    : styles.sortPill
+                            }
+                            onClick={() => handleSortChange(option.sortBy, option.sortOrder)}
+                        >
+                            {option.label}
+                        </button>
+                    ))}
+                </div>
+
+                <select
+                    className={styles.sortSelect}
+                    value={`${sortBy}-${sortOrder}`}
+                    onChange={(e) => {
+                        const [newSortBy, newSortOrder] = e.target.value.split('-')
+                        handleSortChange(newSortBy, newSortOrder)
+                    }}
+                >
+                    {sortOptions.map((option) => (
+                        <option key={option.label} value={`${option.sortBy}-${option.sortOrder}`}>
+                            {option.label}
+                        </option>
+                    ))}
+                </select>
             </div>
         </div>
     )

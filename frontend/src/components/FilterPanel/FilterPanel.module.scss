@@ -7,57 +7,95 @@
     padding: $space-M $space-XL;
     box-shadow: $box-shadow-filters;
 
+    @media (max-width: 599px) {
+        padding: $space-S $space-S;
+    }
+
     .searchRow {
         display: flex;
         align-items: flex-end;
         gap: $space-XXS;
         margin-bottom: $space-XXS;
-        flex-wrap: wrap;
 
-        .inputWrapper {
-            @include flex-column;
-            gap: $space-XXXXXS;
-            flex: 1;
+        @media (max-width: 1499px) {
+            flex-direction: column;
+            align-items: stretch;
+        }
 
-            label {
-                @include label-XS;
-                color: $color-text-primary;
-            }
+        @media (max-width: 750px) {
+            .inputs {
+                flex-direction: column;
 
-            input {
-                padding: $space-XXXXS $space-XXXS;
-                border-radius: $border-radius-small;
-                border: 0.05rem solid $color-grey-200;
-                font-family: inherit;
-                outline: none;
-                transition: border $transition ease;
-                @include body-M;
-
-                &:focus {
-                    border-color: $color-accent;
-                }
-
-                &::placeholder {
-                    color: $color-grey-400;
+                .inputWrapper {
+                    flex: 1 1 100%;
                 }
             }
         }
 
-        .inputWithIcon {
-            position: relative;
+        .inputs {
+            display: flex;
+            align-items: flex-end;
+            gap: $space-XXS;
+            flex: 1;
+            width: 100%;
 
-            svg {
-                position: absolute;
-                left: $space-XXXS;
-                top: 50%;
-                transform: translateY(-50%);
-                width: 1.4rem;
-                height: 1.4rem;
-                color: $color-grey-400;
+            @media (max-width: 1499px) {
+                flex-wrap: wrap;
             }
 
-            input {
-                padding-left: $space-M;
+            .inputWrapper {
+                @include flex-column;
+                gap: $space-XXXXXS;
+                flex: 1 1 calc(50% - 1rem);
+                min-width: 0;
+
+                @media (max-width: 1499px) {
+                    flex: 1 1 calc(50% - 1rem);
+                    width: 100%;
+                }
+
+                label {
+                    @include label-XS;
+                    color: $color-text-primary;
+                }
+
+                input {
+                    padding: $space-XXXXS $space-XXXS;
+                    border-radius: $border-radius-small;
+                    border: 0.05rem solid $color-grey-200;
+                    font-family: inherit;
+                    outline: none;
+                    transition: border $transition ease;
+                    @include body-M;
+                    width: 100%;
+
+                    &:focus {
+                        border-color: $color-accent;
+                    }
+
+                    &::placeholder {
+                        color: $color-grey-400;
+                    }
+                }
+            }
+
+            .inputWithIcon {
+                position: relative;
+
+                svg {
+                    position: absolute;
+                    left: $space-XXXS;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    width: 1.4rem;
+                    height: 1.4rem;
+                    color: $color-grey-400;
+                }
+
+                input {
+                    padding-left: $space-M;
+                    width: 100%;
+                }
             }
         }
 
@@ -65,6 +103,17 @@
             @include flex-column;
             gap: $space-XXXXXS;
             flex-shrink: 0;
+
+            @media (max-width: 1499px) {
+                flex-direction: row;
+                width: 100%;
+                gap: 1.6rem;
+
+                .searchButton,
+                .resetButton {
+                    flex: 1;
+                }
+            }
 
             .searchButton {
                 padding: $space-XXXXS $space-S;
@@ -109,11 +158,74 @@
         display: flex;
         align-items: center;
         gap: $space-XXXXS;
+        flex-wrap: wrap;
+
+        @media (max-width: 650px) {
+            width: 100%;
+        }
 
         .sortLabel {
             @include label-S;
             color: $color-text-secondary;
             margin-right: $space-XXXXXS;
+            white-space: nowrap;
+        }
+
+        .sortPills {
+            display: flex;
+            align-items: center;
+            gap: $space-XXXXS;
+            flex-wrap: wrap;
+
+            @media (max-width: 650px) {
+                display: none;
+            }
+        }
+
+        .sortSelect {
+            display: none;
+
+            @media (max-width: 650px) {
+                display: block;
+                flex: 1;
+                padding: $space-XXXXS $space-M $space-XXXXS $space-XXXS;
+                border-radius: $border-radius-small;
+                border: 0.05rem solid $color-grey-200;
+                font-family: inherit;
+                @include body-M;
+                color: $color-text-primary;
+                cursor: pointer;
+                background: white;
+                outline: none;
+                width: 100%;
+                appearance: auto;
+
+                &:hover {
+                    border-color: $color-accent;
+                }
+
+                &:focus {
+                    border-color: $color-accent;
+                }
+
+                option {
+                    padding: $space-XXXXS $space-XXXS;
+                    font-family: inherit;
+                    @include body-M;
+                    color: $color-text-primary;
+                    cursor: pointer;
+
+                    &:hover {
+                        background: $color-info-bg;
+                        color: $color-accent;
+                    }
+
+                    &:checked {
+                        background: $color-info-bg;
+                        color: $color-accent;
+                    }
+                }
+            }
         }
 
         .sortPill {

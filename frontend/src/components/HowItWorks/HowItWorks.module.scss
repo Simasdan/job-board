@@ -6,6 +6,15 @@
     padding: $space-XXXL $space-XL;
     margin: 0 $space-XL $space-XL;
 
+    @media (max-width: 750px) {
+        padding: 4.4rem 2.8rem;
+        margin: 0 2.8rem $space-XL;
+    }
+
+    @media (max-width: 600px) {
+        margin: 0 0 $space-XL;
+    }
+
     .header {
         text-align: center;
         margin-bottom: $space-L;
@@ -28,12 +37,27 @@
         grid-template-columns: 1fr 1fr 1fr;
         gap: $space-XXS;
 
+        @media (max-width: 1250px) {
+            @include flexbox-centered;
+            flex-direction: column;
+        }
+
         .step {
             background: $color-sidebar-hover;
             border-radius: $border-radius-regular;
             padding: $space-M;
             @include flex-column;
             gap: $space-S;
+
+            @media (max-width: 1250px) {
+                align-items: center;
+                flex-direction: unset;
+            }
+
+            @media (max-width: 675px) {
+                padding: 1.2rem;
+                gap: 1.2rem;
+            }
 
             .stepIcon {
                 width: 4rem;

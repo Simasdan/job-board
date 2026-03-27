@@ -25,6 +25,10 @@
         .main {
             flex: 1;
             padding: $space-XL;
+
+            @media (max-width: 450px) {
+                padding: 2.4rem;
+            }
         }
 
         .footer {
