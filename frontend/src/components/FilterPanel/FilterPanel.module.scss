@@ -12,6 +12,7 @@
         align-items: flex-end;
         gap: $space-XXS;
         margin-bottom: $space-XXS;
+        flex-wrap: wrap;
 
         .inputWrapper {
             @include flex-column;
