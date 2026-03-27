@@ -6,9 +6,7 @@ import Footer from "@/components/Footer/Footer";
 const MainLayout = () => {
   return (
     <div className={styles.mainLayout}>
-      <aside className={styles.sidebar}>
-        <Sidebar/>
-      </aside>
+      <Sidebar/>
       <div className={styles.content}>
         <main className={styles.main}>
           <Outlet />
