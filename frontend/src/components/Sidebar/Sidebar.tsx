@@ -13,6 +13,7 @@ import LogOutIcon from '@/assets/icons/log-out.svg?react'
 import LogoutDialog from '../LogoutDialog/LogoutDialog'
 import ChevronLeftIcon from '@/assets/icons/chevron-left.svg?react'
 import ChevronRightIcon from '@/assets/icons/chevron-right.svg?react'
+import XIcon from '@/assets/icons/x.svg?react'
 import { toast } from 'sonner'
 import axiosInstance from '@/api/axiosInstance'
 import { Spinner } from '@/components/ui/spinner'
@@ -22,9 +23,10 @@ interface SidebarProps {
     sidebarExpanded?: boolean
     onToggle?: () => void
     onNavigate?: () => void
+    isMobileMenu?: boolean
 }
 
-const Sidebar = ({ isTablet = false, sidebarExpanded = false, onToggle, onNavigate }: SidebarProps) => {
+const Sidebar = ({ isTablet = false, sidebarExpanded = false, onToggle, onNavigate, isMobileMenu = false }: SidebarProps) => {
     const isCollapsed = isTablet && !sidebarExpanded;
     const { user, isAuthenticated, logout, openAuthModal, login } = useAuth()
     const [demoLoading, setDemoLoading] = useState<'candidate' | 'employer' | null>(null)
@@ -52,6 +54,7 @@ const Sidebar = ({ isTablet = false, sidebarExpanded = false, onToggle, onNaviga
             ${styles.sidebar} 
             ${isCollapsed ? styles.collapsed : ''} 
             ${isTablet && sidebarExpanded ? styles.tabletExpanded : ''}
+            ${isMobileMenu ? styles.mobileMenuSidebar : ''}
         `}>
 
             {/* Logo */}
@@ -61,6 +64,12 @@ const Sidebar = ({ isTablet = false, sidebarExpanded = false, onToggle, onNaviga
                 </div>
                 {!isCollapsed && <span>Job Board</span>}
             </div>
+
+            {isMobileMenu && (
+                <button className={styles.mobileCloseButton} onClick={onToggle}>
+                    <XIcon />
+                </button>
+            )}
 
             {/* Tablet toggle button */}
             {isTablet && (

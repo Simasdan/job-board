@@ -314,3 +314,39 @@
         }
     }
 }
+
+.mobileMenuSidebar {
+    height: 100%;
+    width: 100%;
+    background: $color-sidebar-bg;
+    display: flex;
+    flex-direction: column;
+    padding: $space-S $space-XXS;
+    overflow-y: auto;
+    position: relative;
+}
+
+.mobileCloseButton {
+    position: absolute;
+    top: $space-S;
+    right: $space-S;
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: $border-radius-small;
+    background: $color-sidebar-hover;
+    border: none;
+    color: $color-sidebar-muted;
+    cursor: pointer;
+    @include flexbox-centered;
+    transition: all $transition ease;
+
+    svg {
+        width: 1.6rem;
+        height: 1.6rem;
+    }
+
+    &:hover {
+        background: $color-accent;
+        color: white;
+    }
+}

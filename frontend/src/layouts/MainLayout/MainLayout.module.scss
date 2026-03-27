@@ -9,10 +9,18 @@
         grid-template-columns: 6rem 1fr;
     }
 
+    @media (max-width: 599px) {
+        grid-template-columns: 1fr;
+    }
+
     .content {
         display: flex;
         flex-direction: column;
         min-height: 100vh;
+
+        @media (max-width: 599px) {
+            padding-top: 5.6rem;
+        }
 
         .main {
             flex: 1;
@@ -43,4 +51,95 @@
     width: 24rem;
     z-index: 45;
     overflow: visible;
+}
+
+.mobileTopBar {
+    background: $color-sidebar-bg;
+    padding: $space-XXXS $space-XXS;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 30;
+    height: 5.6rem;
+
+    .mobileLogo {
+        display: flex;
+        align-items: center;
+        gap: $space-XXXXS;
+
+        .mobileLogoIcon {
+            width: 2.8rem;
+            height: 2.8rem;
+            background: $color-accent;
+            border-radius: $border-radius-small;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            svg {
+                width: 1.4rem;
+                height: 1.4rem;
+                stroke: white;
+            }
+        }
+
+        span {
+            @include title-S;
+            color: white;
+            font-weight: 600;
+        }
+    }
+
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: $space-XXXXXS;
+        width: 3.2rem;
+        height: 3.2rem;
+        justify-content: center;
+        align-items: center;
+
+        span {
+            display: block;
+            width: 2rem;
+            height: 0.2rem;
+            background: $color-sidebar-muted;
+            border-radius: 0.2rem;
+            transition: all $transition ease;
+            flex-shrink: 0;
+        }
+    }
+
+    .hamburgerOpen {
+        span:nth-child(1) {
+            transform: rotate(45deg) translate(0.4rem, 0.4rem);
+        }
+
+        span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(-1rem);
+        }
+
+        span:nth-child(3) {
+            transform: rotate(-45deg) translate(0.4rem, -0.4rem);
+        }
+    }
+}
+
+.mobileSidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+    overflow-y: auto;
 }
