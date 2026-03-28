@@ -27,6 +27,10 @@
         padding: $space-XL $space-XL $space-L;
         border-radius: $border-radius-regular $border-radius-regular 0 0;
 
+        @media (max-width: 800px) {
+            padding: $space-M $space-S $space-S;
+        }
+
         .breadcrumb {
             display: flex;
             align-items: center;
@@ -47,6 +51,12 @@
 
                 &:last-child {
                     color: $color-sidebar-muted;
+                    @include truncate;
+                    max-width: 20rem;
+
+                    @media (max-width: 800px) {
+                        max-width: 12rem;
+                    }
                 }
             }
         }
@@ -57,6 +67,11 @@
             align-items: flex-start;
             gap: $space-XL;
 
+            @media (max-width: 800px) {
+                flex-direction: column;
+                gap: $space-XXXXS;
+            }
+
             .heroLeft {
                 @include flex-column;
                 gap: $space-XXXXS;
@@ -65,11 +80,16 @@
                     display: flex;
                     align-items: center;
                     gap: $space-XXXXS;
+                    flex-wrap: wrap;
 
                     h1 {
                         @include headline-S;
                         color: white;
                         letter-spacing: -0.03rem;
+
+                        @media (max-width: 800px) {
+                            @include title-XL;
+                        }
                     }
 
                     .statusBadge {
@@ -86,6 +106,7 @@
                     display: flex;
                     align-items: center;
                     gap: $space-M;
+                    flex-wrap: wrap;
 
                     .metaItem {
                         display: flex;
@@ -108,9 +129,17 @@
                 align-items: flex-end;
                 flex-shrink: 0;
 
+                @media (max-width: 800px) {
+                    align-items: flex-start;
+                }
+
                 .salaryAmount {
                     @include headline-S;
                     color: white;
+
+                    @media (max-width: 800px) {
+                        @include title-L;
+                    }
                 }
 
                 .salaryPeriod {
@@ -127,6 +156,15 @@
         gap: $space-M;
         padding: $space-M $space-XL;
         align-items: start;
+
+        @media (max-width: 1300px) {
+            padding: $space-M 0;
+        }
+
+        @media (max-width: 800px) {
+            grid-template-columns: 1fr;
+            gap: 1.6rem;
+        }
 
         .descriptionCard {
             background: white;
@@ -152,6 +190,10 @@
         .sidebar {
             @include flex-column;
             gap: $space-XXS;
+
+            @media (max-width: 800px) {
+                order: 2;
+            }
 
             .applyCard {
                 background: white;
@@ -220,7 +262,8 @@
                             color: $color-text-primary;
                         }
 
-                        input, textarea {
+                        input,
+                        textarea {
                             padding: $space-XXXXS $space-XXXS;
                             border-radius: $border-radius-small;
                             border: 0.05rem solid $color-grey-200;

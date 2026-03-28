@@ -9,6 +9,11 @@
         padding: $space-XL $space-XL $space-L;
         border-radius: $border-radius-regular $border-radius-regular 0 0;
 
+        @media (max-width: 750px) {
+            padding: $space-M $space-S $space-S;
+            border-radius: 0;
+        }
+
         .breadcrumb {
             display: flex;
             align-items: center;
@@ -52,6 +57,10 @@
                 @include headline-M;
                 color: white;
                 letter-spacing: -0.04rem;
+
+                @media (max-width: 600px) {
+                    @include headline-S;
+                }
             }
 
             p {
@@ -66,6 +75,10 @@
         @include flex-column;
         gap: $space-M;
         flex: 1;
+
+        @media (max-width: 750px) {
+            padding: $space-M 0;
+        }
 
         .loading {
             @include flexbox-centered;
@@ -110,6 +123,10 @@
         @include flex-column;
         gap: $space-XXS;
 
+        @media (max-width: 750px) {
+            padding: $space-S;
+        }
+
         &.rejectedCard {
             opacity: 0.75;
         }
@@ -118,6 +135,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+
+            @media (max-width: 550px) {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: $space-XXXXXS;
+            }
 
             .candidateInfo {
                 display: flex;
@@ -151,6 +174,10 @@
                 @include label-XXS;
                 padding: 0.3rem $space-XXXXS;
                 border-radius: $border-radius-XXlarge;
+
+                @media (max-width: 550px) {
+                    align-self: flex-start;
+                }
             }
 
             .badgePending {
@@ -198,6 +225,12 @@
             justify-content: space-between;
             align-items: center;
 
+            @media (max-width: 800px) {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: $space-XXXXS;
+            }
+
             .resumeLink {
                 display: flex;
                 align-items: center;
@@ -226,6 +259,13 @@
                 display: flex;
                 align-items: center;
                 gap: $space-XXXXXS;
+                flex-wrap: wrap;
+
+                @media (max-width: 800px) {
+                    width: 100%;
+                    border-top: 0.05rem solid $color-grey-200;
+                    padding-top: $space-XXXXS;
+                }
 
                 .updateSpinner {
                     width: 1.6rem;
@@ -242,6 +282,11 @@
                     cursor: pointer;
                     transition: all $transition ease;
                     @include body-S;
+
+                    @media (max-width: 500px) {
+                        flex: 1 1 calc(50% - $space-XXXXXS);
+                        text-align: center;
+                    }
 
                     &:hover:not(:disabled) {
                         border-color: $color-accent;

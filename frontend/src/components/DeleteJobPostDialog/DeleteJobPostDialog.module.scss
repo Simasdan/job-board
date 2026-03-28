@@ -7,6 +7,10 @@
     border: none !important;
     max-width: 38rem !important;
 
+    @media (max-width: 420px) {
+        max-width: calc(100vw - 4.8rem) !important;
+    }
+
     .header {
         background: $color-sidebar-bg;
         padding: $space-M $space-M $space-S;

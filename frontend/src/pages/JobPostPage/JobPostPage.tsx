@@ -226,8 +226,6 @@ const JobPostPage = () => {
                 </div>
 
                 <div className={styles.sidebar}>
-                    {renderApplySection()}
-
                     <div className={styles.companyCard}>
                         <h3>About the company</h3>
                         <div className={styles.companyHeader}>
@@ -239,6 +237,7 @@ const JobPostPage = () => {
                             </div>
                         </div>
                     </div>
+                    {renderApplySection()}
                 </div>
             </div>
         </div>

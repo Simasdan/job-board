@@ -12,6 +12,14 @@
         justify-content: space-between;
         align-items: center;
 
+        @media (max-width: 750px) {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: $space-S;
+            padding: $space-M $space-S $space-S;
+            border-radius: 0;
+        }
+
         .heroLeft {
             @include flex-column;
             gap: $space-XXXXXS;
@@ -20,6 +28,10 @@
                 @include headline-M;
                 color: white;
                 letter-spacing: -0.04rem;
+
+                @media (max-width: 750px) {
+                    @include headline-S;
+                }
             }
 
             p {
@@ -41,6 +53,11 @@
             transition: background $transition ease;
             @include title-S;
 
+            @media (max-width: 750px) {
+                width: 100%;
+                justify-content: center;
+            }
+
             svg {
                 width: 1.4rem;
                 height: 1.4rem;
@@ -57,6 +74,10 @@
         @include flex-column;
         gap: $space-M;
         flex: 1;
+
+        @media (max-width: 750px) {
+            padding: $space-M 0;
+        }
 
         .loading {
             @include flexbox-centered;
@@ -102,6 +123,12 @@
         align-items: center;
         box-shadow: $box-shadow-jobPostCard;
         transition: border-color $transition ease;
+
+        @media (max-width: 1300px) {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: $space-XXXXS;
+        }
 
         &:hover {
             border-color: $color-grey-300;
@@ -152,6 +179,7 @@
                 display: flex;
                 align-items: center;
                 gap: $space-M;
+                flex-wrap: wrap;
 
                 .metaItem {
                     display: flex;
@@ -175,6 +203,13 @@
             gap: $space-XXXXS;
             flex-shrink: 0;
             margin-left: $space-M;
+
+            @media (max-width: 1300px) {
+                margin-left: 0;
+                width: 100%;
+                border-top: 0.05rem solid $color-grey-200;
+                padding-top: $space-XXXXS;
+            }
 
             .applicationsButton {
                 display: flex;

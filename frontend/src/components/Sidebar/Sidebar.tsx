@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '@/context/AuthContext'
 import { Role } from '@/enums/Role'
 import { NavLinks } from '@/enums/NavLinks'
@@ -27,6 +27,7 @@ interface SidebarProps {
 }
 
 const Sidebar = ({ isTablet = false, sidebarExpanded = false, onToggle, onNavigate, isMobileMenu = false }: SidebarProps) => {
+    const navigate = useNavigate()
     const isCollapsed = isTablet && !sidebarExpanded;
     const { user, isAuthenticated, logout, openAuthModal, login } = useAuth()
     const [demoLoading, setDemoLoading] = useState<'candidate' | 'employer' | null>(null)
@@ -58,7 +59,15 @@ const Sidebar = ({ isTablet = false, sidebarExpanded = false, onToggle, onNaviga
         `}>
 
             {/* Logo */}
-            <div className={styles.logo}>
+            <div
+                className={styles.logo}
+                onClick={() => {
+                    navigate('/')
+                    window.scrollTo({ top: 0, behavior: 'smooth' })
+                    onNavigate?.()
+                }}
+                style={{ cursor: 'pointer' }}
+            >
                 <div className={styles.logoIcon}>
                     <BriefcaseIcon />
                 </div>
