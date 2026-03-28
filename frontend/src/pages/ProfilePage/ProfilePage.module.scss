@@ -30,6 +30,14 @@
         justify-content: space-between;
         align-items: center;
 
+        @media (max-width: 750px) {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: $space-S;
+            padding: $space-M $space-S $space-S;
+            border-radius: 0;
+        }
+
         .heroLeft {
             display: flex;
             align-items: center;
@@ -44,6 +52,11 @@
                 @include flexbox-centered;
                 @include headline-S;
                 flex-shrink: 0;
+
+                @media (max-width: 750px) {
+                    width: 4.4rem;
+                    height: 4.4rem;
+                }
             }
 
             h1 {
@@ -51,6 +64,10 @@
                 color: white;
                 letter-spacing: -0.03rem;
                 margin-bottom: $space-XXXXXS;
+
+                @media (max-width: 750px) {
+                    @include title-L;
+                }
             }
 
             .roleBadge {
@@ -75,6 +92,11 @@
             transition: all $transition ease;
             @include body-M;
 
+            @media (max-width: 750px) {
+                width: 100%;
+                justify-content: center;
+            }
+
             svg {
                 width: 1.3rem;
                 height: 1.3rem;
@@ -91,10 +113,19 @@
         padding: $space-M $space-XL;
         flex: 1;
 
+        @media (max-width: 1500px) {
+            padding: $space-M 0;
+        }
+
         .grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: $space-XXS;
+
+            @media (max-width: 750px) {
+                @include flexbox-centered;
+                flex-direction: column;
+            }
 
             .infoCard {
                 background: white;
@@ -104,6 +135,11 @@
                 box-shadow: $box-shadow-jobPostCard;
                 @include flex-column;
                 gap: $space-XXXXXS;
+
+                @media (max-width: 750px) {
+                    flex: 1;
+                    width: 100%;
+                }
 
                 .cardLabel {
                     @include label-XXS;
@@ -142,136 +178,137 @@
 }
 
 .dialogContent {
-        padding: 0 !important;
-        overflow: hidden;
-        border-radius: $border-radius-regular !important;
-        border: none !important;
-        max-width: 44rem !important;
+    padding: 0 !important;
+    overflow: hidden;
+    border-radius: $border-radius-regular !important;
+    border: none !important;
+    max-width: 44rem !important;
 
-        .dialogHeader {
-            background: $color-sidebar-bg;
-            padding: $space-S $space-M;
+    .dialogHeader {
+        background: $color-sidebar-bg;
+        padding: $space-S $space-M;
 
-            .dialogLogo {
-                display: flex;
-                align-items: center;
-                gap: $space-XXXXS;
+        .dialogLogo {
+            display: flex;
+            align-items: center;
+            gap: $space-XXXXS;
 
-                .dialogLogoIcon {
-                    width: 2.8rem;
-                    height: 2.8rem;
-                    background: $color-accent;
-                    border-radius: $border-radius-small;
-                    @include flexbox-centered;
-                    flex-shrink: 0;
+            .dialogLogoIcon {
+                width: 2.8rem;
+                height: 2.8rem;
+                background: $color-accent;
+                border-radius: $border-radius-small;
+                @include flexbox-centered;
+                flex-shrink: 0;
 
-                    svg {
-                        width: 1.4rem;
-                        height: 1.4rem;
-                        stroke: white;
-                    }
-                }
-
-                span {
-                    @include title-M;
-                    color: white;
-                    letter-spacing: -0.03rem;
+                svg {
+                    width: 1.4rem;
+                    height: 1.4rem;
+                    stroke: white;
                 }
             }
+
+            span {
+                @include title-M;
+                color: white;
+                letter-spacing: -0.03rem;
+            }
         }
+    }
 
-        .formBody {
-            padding: $space-S $space-M;
+    .formBody {
+        padding: $space-S $space-M;
 
-            .form {
+        .form {
+            @include flex-column;
+            gap: $space-XXS;
+
+            .field {
                 @include flex-column;
-                gap: $space-XXS;
+                gap: $space-XXXXXS;
 
-                .field {
-                    @include flex-column;
-                    gap: $space-XXXXXS;
+                label {
+                    @include label-XS;
+                    color: $color-text-primary;
+                }
 
-                    label {
-                        @include label-XS;
+                input,
+                textarea {
+                    padding: $space-XXXXS $space-XXXS;
+                    border-radius: $border-radius-small;
+                    border: 0.05rem solid $color-grey-200;
+                    font-family: inherit;
+                    outline: none;
+                    transition: border $transition ease;
+                    @include body-M;
+                    resize: vertical;
+
+                    &:focus {
+                        border-color: $color-accent;
+                    }
+
+                    &::placeholder {
+                        color: $color-grey-400;
+                    }
+                }
+            }
+
+            .buttonRow {
+                display: flex;
+                justify-content: flex-end;
+                gap: $space-XXXXS;
+                margin-top: $space-XXXXXS;
+
+                .cancelButton {
+                    padding: $space-XXXXS $space-S;
+                    border-radius: $border-radius-small;
+                    background: transparent;
+                    border: 0.05rem solid $color-grey-200;
+                    color: $color-text-secondary;
+                    cursor: pointer;
+                    transition: all $transition ease;
+                    @include body-M;
+
+                    &:hover {
+                        border-color: $color-text-secondary;
                         color: $color-text-primary;
                     }
 
-                    input, textarea {
-                        padding: $space-XXXXS $space-XXXS;
-                        border-radius: $border-radius-small;
-                        border: 0.05rem solid $color-grey-200;
-                        font-family: inherit;
-                        outline: none;
-                        transition: border $transition ease;
-                        @include body-M;
-                        resize: vertical;
-
-                        &:focus {
-                            border-color: $color-accent;
-                        }
-
-                        &::placeholder {
-                            color: $color-grey-400;
-                        }
+                    &:disabled {
+                        opacity: 0.6;
+                        cursor: not-allowed;
                     }
                 }
 
-                .buttonRow {
+                .saveButton {
                     display: flex;
-                    justify-content: flex-end;
-                    gap: $space-XXXXS;
-                    margin-top: $space-XXXXXS;
+                    align-items: center;
+                    gap: $space-XXXXXS;
+                    padding: $space-XXXXS $space-S;
+                    border-radius: $border-radius-small;
+                    background: $color-accent;
+                    border: none;
+                    color: white;
+                    cursor: pointer;
+                    transition: background $transition ease;
+                    @include title-S;
 
-                    .cancelButton {
-                        padding: $space-XXXXS $space-S;
-                        border-radius: $border-radius-small;
-                        background: transparent;
-                        border: 0.05rem solid $color-grey-200;
-                        color: $color-text-secondary;
-                        cursor: pointer;
-                        transition: all $transition ease;
-                        @include body-M;
-
-                        &:hover {
-                            border-color: $color-text-secondary;
-                            color: $color-text-primary;
-                        }
-
-                        &:disabled {
-                            opacity: 0.6;
-                            cursor: not-allowed;
-                        }
+                    &:hover {
+                        background: $color-accent-hover;
                     }
 
-                    .saveButton {
-                        display: flex;
-                        align-items: center;
-                        gap: $space-XXXXXS;
-                        padding: $space-XXXXS $space-S;
-                        border-radius: $border-radius-small;
-                        background: $color-accent;
-                        border: none;
+                    &:disabled {
+                        opacity: 0.6;
+                        cursor: not-allowed;
+                    }
+
+                    .buttonSpinner {
+                        width: 1.4rem;
+                        height: 1.4rem;
                         color: white;
-                        cursor: pointer;
-                        transition: background $transition ease;
-                        @include title-S;
-
-                        &:hover {
-                            background: $color-accent-hover;
-                        }
-
-                        &:disabled {
-                            opacity: 0.6;
-                            cursor: not-allowed;
-                        }
-
-                        .buttonSpinner {
-                            width: 1.4rem;
-                            height: 1.4rem;
-                            color: white;
-                        }
                     }
                 }
             }
         }
     }
+}
