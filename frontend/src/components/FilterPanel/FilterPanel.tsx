@@ -34,7 +34,15 @@ const FilterPanel = ({ onSearch }: FilterPanelProps) => {
         setSalaryMax('')
         setSortBy('createdAt')
         setSortOrder('desc')
-        onSearch({ page: 1 })
+        onSearch({
+        title: undefined,
+        location: undefined,
+        salaryMin: undefined,
+        salaryMax: undefined,
+        sortBy: 'createdAt',
+        sortOrder: 'desc',
+        page: 1
+    })
     }
 
     const handleSortChange = (newSortBy: string, newSortOrder: string) => {
