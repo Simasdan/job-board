@@ -11,6 +11,7 @@ export default defineConfig({
     tailwindcss(),
     svgr(),
   ],
+  base: '/job-board',
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
