@@ -147,3 +147,63 @@
     z-index: 50;
     overflow-y: auto;
 }
+
+.wakeUpOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    @include flexbox-centered;
+}
+
+.wakeUpModal {
+    background: white;
+    border-radius: $border-radius-regular;
+    padding: $space-XL;
+    max-width: 44rem;
+    width: calc(100% - 3.2rem);
+    @include flex-column;
+    align-items: center;
+    gap: $space-S;
+    text-align: center;
+
+    .wakeUpIcon {
+        width: 5.6rem;
+        height: 5.6rem;
+        background: $color-sidebar-bg;
+        border-radius: $border-radius-regular;
+        @include flexbox-centered;
+
+        svg {
+            width: 2.8rem;
+            height: 2.8rem;
+            stroke: white;
+        }
+    }
+
+    h2 {
+        @include title-L;
+        color: $color-text-primary;
+    }
+
+    p {
+        @include body-M;
+        color: $color-text-secondary;
+        line-height: 1.7;
+    }
+}
+
+.wakeUpSpinner {
+    width: 2.4rem;
+    height: 2.4rem;
+    border: 0.25rem solid $color-grey-200;
+    border-top-color: $color-accent;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
