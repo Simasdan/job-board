@@ -57,4 +57,6 @@ export const router = createBrowserRouter([
             }
         ]
     }
-])
+], {
+    basename: '/job-board'
+})
