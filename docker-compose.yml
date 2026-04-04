@@ -1,0 +1,25 @@
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      SA_PASSWORD: ${DB_PASSWORD}
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqldata:/var/lib/sqlserver/data
+
+  api:
+    build: ./backend/job-board-api/job-board-api/
+    ports:
+      - "5028:8080"
+    environment:
+      ConnectionStrings__DefaultConnectionString: "Server=db;Database=job-board-db;User Id=sa;Password=${DB_PASSWORD};TrustServerCertificate=true;MultipleActiveResultSets=true"
+      JWT__Secret: ${JWT_SECRET}
+      JWT__Issuer: "http://localhost:5028"
+      JWT__Audience: "User"
+    depends_on:
+      - db
+
+volumes:
+  sqldata:
