@@ -1,20 +1,21 @@
 services:
   db:
-    image: mcr.microsoft.com/mssql/server:2022-latest
+    image: postgres:16
     environment:
-      SA_PASSWORD: ${DB_PASSWORD}
-      ACCEPT_EULA: "Y"
+      POSTGRES_DB: job-board-db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     ports:
-      - "1433:1433"
+      - "5432:5432"
     volumes:
-      - sqldata:/var/lib/sqlserver/data
+      - pgdata:/var/lib/postgresql/data
 
   api:
     build: ./backend/job-board-api/job-board-api/
     ports:
       - "5028:8080"
     environment:
-      ConnectionStrings__DefaultConnectionString: "Server=db;Database=job-board-db;User Id=sa;Password=${DB_PASSWORD};TrustServerCertificate=true;MultipleActiveResultSets=true"
+      ConnectionStrings__DefaultConnectionString: "Host=db;Database=job-board-db;Username=postgres;Password=${DB_PASSWORD}"
       JWT__Secret: ${JWT_SECRET}
       JWT__Issuer: "http://localhost:5028"
       JWT__Audience: "User"
@@ -22,4 +23,4 @@ services:
       - db
 
 volumes:
-  sqldata:
+  pgdata:

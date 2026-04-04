@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -15,12 +16,12 @@ namespace job_board_api.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Role = table.Column<int>(type: "int", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Email = table.Column<string>(type: "text", nullable: false),
+                    PasswordHash = table.Column<string>(type: "text", nullable: false),
+                    Role = table.Column<int>(type: "integer", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -31,12 +32,12 @@ namespace job_board_api.Migrations
                 name: "Candidates",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ResumeUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Bio = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UserId = table.Column<int>(type: "integer", nullable: false),
+                    FullName = table.Column<string>(type: "text", nullable: false),
+                    ResumeUrl = table.Column<string>(type: "text", nullable: false),
+                    Bio = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -53,12 +54,12 @@ namespace job_board_api.Migrations
                 name: "Employers",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    CompanyName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CompanyDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Website = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UserId = table.Column<int>(type: "integer", nullable: false),
+                    CompanyName = table.Column<string>(type: "text", nullable: false),
+                    CompanyDescription = table.Column<string>(type: "text", nullable: false),
+                    Website = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -75,16 +76,16 @@ namespace job_board_api.Migrations
                 name: "JobPosts",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SalaryMin = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    SalaryMax = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false),
-                    EmployerId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Title = table.Column<string>(type: "text", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: false),
+                    Location = table.Column<string>(type: "text", nullable: false),
+                    SalaryMin = table.Column<decimal>(type: "numeric(18,2)", nullable: false),
+                    SalaryMax = table.Column<decimal>(type: "numeric(18,2)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Status = table.Column<int>(type: "integer", nullable: false),
+                    EmployerId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -101,14 +102,14 @@ namespace job_board_api.Migrations
                 name: "JobApplications",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CoverLetter = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ResumeUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    JobPostId = table.Column<int>(type: "int", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false),
-                    CandidateId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CoverLetter = table.Column<string>(type: "text", nullable: false),
+                    ResumeUrl = table.Column<string>(type: "text", nullable: false),
+                    JobPostId = table.Column<int>(type: "integer", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Status = table.Column<int>(type: "integer", nullable: false),
+                    CandidateId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
