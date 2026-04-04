@@ -25,6 +25,8 @@ jobs:
 
       - name: Build
         working-directory: frontend
+        env:
+          VITE_API_URL: https://job-board-gsx8.onrender.com/api/v1
         run: npm run build
 
       - name: Deploy to GitHub Pages
